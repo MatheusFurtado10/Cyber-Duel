@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-package br.ufjf.dcc.trabalho;
+package Jogo;
 import java.nio.file.Files;
 /**
  *
