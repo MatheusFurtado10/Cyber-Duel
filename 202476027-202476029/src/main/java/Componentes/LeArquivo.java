@@ -6,6 +6,7 @@ package Componentes;
 
 import java.nio.charset.StandardCharsets;
 import java.io.IOException;
+import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,6 +24,23 @@ public class LeArquivo {
         List<String> infoCartas = Files.readAllLines(arquivo, StandardCharsets.UTF_8);
         List<Carta> deck = new ArrayList<>();
         
+        if("suporte.csv".equals(path)){
+            for(int i=1;i<infoCartas.size();i++)
+        {
+            String linha = infoCartas.get(i);
+            String[] divide = linha.split(","); 
+            
+            String nome = divide[0];
+            String tipo = divide[1];
+            float poder = parseFloat(divide[2]);
+            float custo = parseFloat(divide[3]);
+            String efeito =divide[4];
+            String descricao = divide[5];
+
+            deck.add(new Carta(nome,tipo,poder,custo,efeito,descricao));
+            
+        }
+        }else{
         for(int i=1;i<infoCartas.size();i++)
         {
             String linha = infoCartas.get(i);
@@ -30,12 +48,13 @@ public class LeArquivo {
             
             String nome = divide[0];
             String tipo = divide[1];
-            int poder = parseInt(divide[2]);
-            int custo = parseInt(divide[3]);
+            float poder = parseFloat(divide[2]);
+            float custo = parseFloat(divide[3]);
             String descricao = divide[4];
             
-            deck.add(new Carta(nome,tipo,poder,custo,descricao));
+            deck.add(new Carta(nome,tipo,poder,custo,"",descricao));
             
+        }
         }
         return deck;
     }

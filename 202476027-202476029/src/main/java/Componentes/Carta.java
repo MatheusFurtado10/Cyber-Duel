@@ -4,8 +4,6 @@
  */
 package Componentes;
 
-import java.io.IOException;
-import java.util.List;
 
 /**
  *
@@ -14,30 +12,27 @@ import java.util.List;
 public class Carta {
     String nome;
     String tipo;
-    int poder;
-    int custo;
+    float poder;
+    float custo;
+    String efeito;
     String descricao;
     
-    public Carta(String n,String t,int p,int c, String desc)
+    public Carta(String n,String t,float p,float c,String f, String desc)
     {
         nome=n;
         tipo=t;
         poder=p;
         custo = c;
+        if("SUPORTE".equals(t))
+        {
+            efeito = f;
+        }
         descricao=desc;
     }
     public void exibeCarta()
     {
-        System.out.println(this.nome + " " + this.tipo + " " + this.poder + " " + this.custo + " " + this.descricao);
+        System.out.println(this.nome + " " + this.tipo + " " + this.poder + " " + this.custo + " "+this.efeito + " " + this.descricao);
     }
-    public static void CriaBaralhoAtaque() throws IOException
-    {
-        List<Carta> deck = LeArquivo.leCarta("ataque.csv");
-        
-        for(Carta a : deck)
-        {
-            a.exibeCarta();
-        }
-    }
+    
     
 }

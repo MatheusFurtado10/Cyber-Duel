@@ -3,7 +3,7 @@
  */
 
 package meu.jogo;
-import Componentes.Carta;
+import Componentes.Baralho;
 import java.io.IOException;
 
 /**
@@ -13,6 +13,10 @@ import java.io.IOException;
 public class App {
 
     public static void main(String[] args) throws IOException {
-        Carta.CriaBaralhoAtaque();
+        Baralho deck = new Baralho();
+        deck.criaBaralhoAtaque();
+        deck.criaBaralhoDefesa();
+        deck.criaBaralhoSuporte();
+        
     }
 }
