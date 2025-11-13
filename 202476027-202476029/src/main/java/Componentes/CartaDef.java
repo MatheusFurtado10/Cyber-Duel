@@ -4,35 +4,28 @@
  */
 package Componentes;
 
-
 /**
  *
- * @author Lucas
+ * @author mathe
  */
-public class Carta {
+public class CartaDef {
     String nome;
     String tipo;
     float poder;
     float custo;
-    String efeito;
     String descricao;
     
-    public Carta(String n,String t,float p,float c,String f, String desc)
+    public CartaDef(String n,String t,float p,float c, String desc)
     {
         nome=n;
         tipo=t;
         poder=p;
         custo = c;
-        if("SUPORTE".equals(t))
-        {
-            efeito = f;
-        }
+        
         descricao=desc;
     }
     public void exibeCarta()
     {
-        System.out.println(this.nome + " " + this.tipo + " " + this.poder + " " + this.custo + " "+this.efeito + " " + this.descricao);
+        System.out.println(this.nome + " " + this.tipo + " " + this.poder + " " + this.custo + " " + this.descricao);
     }
-    
-    
 }

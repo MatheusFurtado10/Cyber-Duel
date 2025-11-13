@@ -13,15 +13,15 @@ import java.util.List;
  * @author mathe
  */
 public class Baralho {
-    List<Carta> ataque = new ArrayList<>();
-    List<Carta> defesa = new ArrayList<>();
-    List<Carta> suporte = new ArrayList<>();
+    List<CartaAtk> ataque = new ArrayList<>();
+    List<CartaDef> defesa = new ArrayList<>();
+    List<CartaSup> suporte = new ArrayList<>();
     
     public void criaBaralhoAtaque() throws IOException
     {
-        ataque = LeArquivo.leCarta("ataque.csv");
+        ataque = LeArquivo.leCartaAtk("ataque.csv");
         
-        for(Carta a : ataque)
+        for(CartaAtk a : ataque)
         {
             a.exibeCarta();
         }
@@ -29,9 +29,9 @@ public class Baralho {
     
     public void criaBaralhoDefesa() throws IOException
     {
-        defesa = LeArquivo.leCarta("defesa.csv");
+        defesa = LeArquivo.leCartaDef("defesa.csv");
         
-        for(Carta a : defesa)
+        for(CartaDef a : defesa)
         {
             a.exibeCarta();
         }
@@ -39,9 +39,9 @@ public class Baralho {
     
     public void criaBaralhoSuporte() throws IOException
     {
-        suporte = LeArquivo.leCarta("suporte.csv");
+        suporte = LeArquivo.leCartaSup("suporte.csv");
         
-         for(Carta a : suporte)
+         for(CartaSup a : suporte)
         {
             a.exibeCarta();
         }

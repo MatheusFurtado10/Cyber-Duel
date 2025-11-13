@@ -19,12 +19,51 @@ import java.util.List;
  */
 public class LeArquivo {
     
-    public static List<Carta> leCarta(String path) throws IOException  {
+     public static List<CartaDef> leCartaDef(String path) throws IOException{
         Path arquivo = Paths.get(path);
         List<String> infoCartas = Files.readAllLines(arquivo, StandardCharsets.UTF_8);
-        List<Carta> deck = new ArrayList<>();
-        
-        if("suporte.csv".equals(path)){
+        List<CartaDef> deck = new ArrayList<>();
+            for(int i=1;i<infoCartas.size();i++)
+        {
+            String linha = infoCartas.get(i);
+            String[] divide = linha.split(","); 
+            
+            String nome = divide[0];
+            String tipo = divide[1];
+            float poder = parseFloat(divide[2]);
+            float custo = parseFloat(divide[3]);
+            String descricao = divide[4];
+
+            deck.add(new CartaDef(nome,tipo,poder,custo,descricao));
+            
+        }
+            return deck;
+    }
+        public static List<CartaAtk> leCartaAtk(String path) throws IOException{
+        Path arquivo = Paths.get(path);
+        List<String> infoCartas = Files.readAllLines(arquivo, StandardCharsets.UTF_8);
+        List<CartaAtk> deck = new ArrayList<>();
+            for(int i=1;i<infoCartas.size();i++)
+        {
+            String linha = infoCartas.get(i);
+            String[] divide = linha.split(","); 
+            
+            String nome = divide[0];
+            String tipo = divide[1];
+            float poder = parseFloat(divide[2]);
+            float custo = parseFloat(divide[3]);
+            String descricao = divide[4];
+
+            deck.add(new CartaAtk(nome,tipo,poder,custo,descricao));
+            
+        }
+            return deck;
+    }
+    
+    public static List<CartaSup> leCartaSup(String path) throws IOException{
+        Path arquivo = Paths.get(path);
+        List<String> infoCartas = Files.readAllLines(arquivo, StandardCharsets.UTF_8);
+        List<CartaSup> deck = new ArrayList<>();
             for(int i=1;i<infoCartas.size();i++)
         {
             String linha = infoCartas.get(i);
@@ -37,25 +76,9 @@ public class LeArquivo {
             String efeito =divide[4];
             String descricao = divide[5];
 
-            deck.add(new Carta(nome,tipo,poder,custo,efeito,descricao));
+            deck.add(new CartaSup(nome,tipo,poder,custo,efeito,descricao));
             
         }
-        }else{
-        for(int i=1;i<infoCartas.size();i++)
-        {
-            String linha = infoCartas.get(i);
-            String[] divide = linha.split(","); 
-            
-            String nome = divide[0];
-            String tipo = divide[1];
-            float poder = parseFloat(divide[2]);
-            float custo = parseFloat(divide[3]);
-            String descricao = divide[4];
-            
-            deck.add(new Carta(nome,tipo,poder,custo,"",descricao));
-            
-        }
-        }
-        return deck;
+            return deck;
     }
 }
