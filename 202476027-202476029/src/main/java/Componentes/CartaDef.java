@@ -8,24 +8,11 @@ package Componentes;
  *
  * @author mathe
  */
-public class CartaDef {
-    String nome;
-    String tipo;
-    float poder;
-    float custo;
-    String descricao;
-    
-    public CartaDef(String n,String t,float p,float c, String desc)
-    {
-        nome=n;
-        tipo=t;
-        poder=p;
-        custo = c;
-        
-        descricao=desc;
+public class CartaDef extends Carta {
+
+    public CartaDef(String n, String t, float poder, int c, String desc) {
+        super(n, t, poder, c, desc);
     }
-    public void exibeCarta()
-    {
-        System.out.println(this.nome + " " + this.tipo + " " + this.poder + " " + this.custo + " " + this.descricao);
-    }
+
+  
 }

@@ -8,23 +8,15 @@ package Componentes;
  *
  * @author mathe
  */
-public class CartaSup {
-    String nome;
-    String tipo;
-    float poder;
-    float custo;
+public class CartaSup extends Carta {
     String efeito;
-    String descricao;
     
-    public CartaSup(String n,String t,float p,float c,String f, String desc)
-    {
-        nome=n;
-        tipo=t;
-        poder=p;
-        custo = c;
-        efeito = f;
-        descricao=desc;
+    public CartaSup(String n, String t, float p, int c, String desc, String f) {
+        super(n, t, p, c, desc);
+        this.efeito = f;
     }
+   
+    @Override
     public void exibeCarta()
     {
         System.out.println(this.nome + " " + this.tipo + " " + this.poder + " " + this.custo + " "+this.efeito + " " + this.descricao);

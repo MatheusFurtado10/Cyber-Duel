@@ -2,15 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Componentes;
+package meu.jogo;
 
 /**
  *
- * @author mathe
+ * @author Lucas
  */
-public class CartaAtk extends Carta{
+class Bot {
     
-    public CartaAtk(String n, String t, float poder, int c, String desc) {
-        super(n, t, poder, c, desc);
-    }
 }
