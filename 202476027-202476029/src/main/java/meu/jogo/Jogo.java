@@ -4,6 +4,7 @@
 
 package meu.jogo;
 import Componentes.Carta;
+import Componentes.CartaSup;
 import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,8 +44,7 @@ public class Jogo {
             exibirEstado(j1, j2, j1.jogadas,j2.jogadas); 
             
            // 2. Lógica de Ação
-            jogadorAtual.jogadas.clear();
-            jogadorAtual.jogadas.addAll(jogadorAtual.realizarAcao(oponente, resposta));
+            jogadorAtual.realizarAcao(jogadorAtual, resposta);
             if (jogadorAtual.rendeu) { 
                  finalizarJogo(oponente, jogadorAtual);
                  break;
@@ -52,14 +52,14 @@ public class Jogo {
             System.out.println("\n--- TURNO DE " + oponente.nome.toUpperCase() + " ---");
             exibirEstado(j1, j2, j1.jogadas, j2.jogadas);
 
-            oponente.jogadas.addAll( oponente.realizarAcao(jogadorAtual, resposta));
+           oponente.realizarAcao(oponente, resposta);
 
             if (oponente.rendeu) {
                 finalizarJogo(jogadorAtual,oponente);
                 break;
             }
             // 3. Cálculo de Dano, Vida e Energia
-            calculaConfronto(jogadorAtual, oponente, jogadorAtual.jogadas,oponente.jogadas);
+            calculaConfronto(jogadorAtual, oponente);
             jogadorAtual.jogadas.clear();
             oponente.jogadas.clear();
             
@@ -74,13 +74,85 @@ public class Jogo {
         }
     }
      
-     private void finalizarJogo(Jogador oponente, Jogador jogadorAtual) {
-        
+     private void finalizarJogo(Jogador vencedor, Jogador perdedor) {
+         System.out.println("O jogador "+vencedor.nome + " ganhou de " + perdedor.nome + " com a vida restante de " + vencedor.vida + " pontos!");
     }
 
-    private void calculaConfronto(Jogador jogadorAtual, Jogador oponente, List<Carta> jogadas, List<Carta> jogadas0) {
-        
-    }
+    public void calculaConfronto(Jogador jogadorAtual, Jogador oponente) {
+        boolean jogadorAtual_soAtaque = true; // Começa como true, se for jogado algo diferente, vira false
+        boolean oponente_soAtaque = true;
+        for(int i=0;i<jogadorAtual.jogadas.size();i++)
+        {
+            switch(jogadorAtual.jogadas.get(i).tipo)
+            {
+                case "ATAQUE" -> {
+                    jogadorAtual.ataque+=jogadorAtual.jogadas.get(i).poder;
+                }
+                case "DEFESA" -> {
+                    jogadorAtual.defesa+=jogadorAtual.jogadas.get(i).poder;
+                    jogadorAtual_soAtaque = false;
+                }
+                case "SUPORTE" -> {
+                    jogadorAtual_soAtaque = false;
+                    CartaSup mesa = (CartaSup) jogadorAtual.jogadas.get(i);
+                    switch(mesa.efeito)
+                    {
+                        case "AUMENTA_ATAQUE":  jogadorAtual.ataque *= jogadorAtual.jogadas.get(i).poder ;
+                        case "DIMINUI_ATAQUE": oponente.ataque -= oponente.ataque * jogadorAtual.jogadas.get(i).poder ;
+                        case "AUMENTA_VIDA": jogadorAtual.vida +=  jogadorAtual.jogadas.get(i).poder ;
+                        default: break;
+                    }
+                    }  
+                }
+        }
+         for(int i=0;i<oponente.jogadas.size();i++)
+        {
+            switch(oponente.jogadas.get(i).tipo)
+            {
+                case "ATAQUE" -> {
+                    oponente.ataque+=oponente.jogadas.get(i).poder;
+                    
+                }
+                case "DEFESA" -> {
+                    oponente.defesa+=oponente.jogadas.get(i).poder;
+                    oponente_soAtaque = false;
+                }
+                case "SUPORTE" -> {
+                    oponente_soAtaque = false;
+                    CartaSup mesa = (CartaSup) oponente.jogadas.get(i);
+                    switch(mesa.efeito)
+                    {
+                        case "AUMENTA_ATAQUE":  oponente.ataque *= 1 + oponente.jogadas.get(i).poder ;
+                        case "DIMINUI_ATAQUE": jogadorAtual.defesa -= jogadorAtual.ataque * oponente.jogadas.get(i).poder ;
+                        case "AUMENTA_VIDA": oponente.vida +=  oponente.jogadas.get(i).poder ;
+                        default: break;
+                    }
+                    }  
+                }
+        }
+        int danoAoOponente = 0;
+        int danoAoJogador = 0;
+
+        // Verificação da Condição Especial "Ataque vs Ataque"
+        if (jogadorAtual_soAtaque && oponente_soAtaque) {
+            danoAoOponente = (int) oponente.ataque; 
+            danoAoJogador = (int) jogadorAtual.ataque; 
+
+        } else {
+
+            danoAoOponente = (int) Math.max(0, jogadorAtual.ataque - oponente.defesa);
+
+
+            danoAoJogador = (int) Math.max(0, oponente.ataque - jogadorAtual.defesa);
+
+
+        }
+
+        // Aplica o Dano à Vida
+            oponente.vida -= danoAoOponente;
+            jogadorAtual.vida -= danoAoJogador;
+
+            }
 
     
     public static void main(String[] args) throws IOException 

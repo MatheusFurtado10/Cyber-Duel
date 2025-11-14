@@ -20,6 +20,8 @@ public class Jogador {
    int id;
    int vida =100;
    int energia = 10;
+   float ataque=0;
+   float defesa=0;
    int nAtk = 0;
    int nDef =0;
    int nSup =0;
@@ -173,7 +175,59 @@ public class Jogador {
            
     }
 
-    public List<Carta> realizarAcao(Jogador oponente, Scanner resposta) {
-       return mao;
+    public void realizarAcao(Jogador jogador, Scanner resposta) {
+        System.out.println("Suas cartas sao:");
+        for(Carta a : jogador.mao)
+            {
+                System.out.print(jogador.mao.indexOf(a)+1 + " - ");
+                a.exibeCarta();
+            }
+        System.out.println("Escolha a sua ação nesse turno");
+        int opcao=0;
+        boolean respondeu = false;
+        while (!respondeu) {
+          // Exibe as opções do menu
+          System.out.println("\n--- Açoes ---");
+          System.out.println("1. Jogar Cartas");
+          System.out.println("2. Passar a vez");
+          System.out.println("3. Entregar o Sistema");
+          System.out.print("Escolha uma opção: ");
+
+          
+          opcao = resposta.nextInt();
+
+          
+          switch (opcao) {
+              case 1:
+                  respondeu = true;
+                  jogador.jogaCarta();
+                   if(jogador.energia <10)
+                  {
+                  jogador.energia+=1;
+                  }
+                  break; // Sai do switch
+
+              case 2:
+                  respondeu=true;
+                  if(jogador.energia <10)
+                  {
+                  jogador.energia+=1;
+                  }
+                  System.out.println("Você escolheu a Opção 2.");
+                  
+                  break;
+              case 3:
+                  respondeu=true;
+                  jogador.vida =0;
+                  break; 
+
+              default:
+                  System.out.println("Opção inválida. Tente novamente.");
+          }
+        }
+    }
+
+    public void jogaCarta() {
+       
     }
 }

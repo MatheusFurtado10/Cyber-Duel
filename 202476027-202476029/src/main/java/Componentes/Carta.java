@@ -10,11 +10,11 @@ package Componentes;
  * @author mathe
  */
   public abstract class Carta  {
-    protected String nome;
-    protected String tipo; // Você pode querer usar um Enum para 'tipo' no futuro
-    protected float poder;
-    protected int custo;
-    protected String descricao;
+    public String nome;
+    public String tipo; // Você pode querer usar um Enum para 'tipo' no futuro
+    public float poder;
+    public int custo;
+    public String descricao;
     
     // Construtor base para inicializar os atributos comuns
     public Carta(String n, String t,float p, int c, String desc) {

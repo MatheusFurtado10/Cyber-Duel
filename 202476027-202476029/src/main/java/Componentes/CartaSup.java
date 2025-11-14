@@ -9,9 +9,9 @@ package Componentes;
  * @author mathe
  */
 public class CartaSup extends Carta {
-    String efeito;
+    public String efeito;
     
-    public CartaSup(String n, String t, float p, int c, String desc, String f) {
+    public CartaSup(String n, String t, float p, int c, String f, String desc) {
         super(n, t, p, c, desc);
         this.efeito = f;
     }
