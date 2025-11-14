@@ -5,9 +5,6 @@
 package meu.jogo;
 
 import Componentes.Carta;
-import Componentes.CartaAtk;
-import Componentes.CartaDef;
-import Componentes.CartaSup;
 import Componentes.LeArquivo;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,18 +18,19 @@ import java.util.Scanner;
 public class Jogador {
    String nome;
    int id;
+   int vida =100;
+   int energia = 10;
    int nAtk = 0;
    int nDef =0;
    int nSup =0;
+   boolean rendeu = false;
    List<Carta> mao = new ArrayList<>();
+   List<Carta> jogadas =  new ArrayList<>(); 
    
-    public Jogador()
+    public Jogador(String n,int i)
     {
-        Scanner nomer = new Scanner(System.in);
-        System.out.println("Insira seu nome:");
-        nome = nomer.nextLine();
-        System.out.println("Agora insira seu id:");
-        id = nomer.nextInt();
+        nome = n;
+        id = i;
     }
     
     public static void imprimirLista(List<Carta> cartas, String tipo, int n) 
@@ -173,5 +171,9 @@ public class Jogador {
                 a.exibeCarta();
             }
            
+    }
+
+    public List<Carta> realizarAcao(Jogador oponente, Scanner resposta) {
+       return mao;
     }
 }

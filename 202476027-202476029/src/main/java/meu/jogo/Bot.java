@@ -9,26 +9,19 @@ import Componentes.LeArquivo;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import static meu.jogo.Jogador.imprimirLista;
-import static meu.jogo.Jogador.selecionarCarta;
 
 /**
  *
  * @author Lucas
  */
-class Bot {
-    String nome;
-    int id;
-    int nAtk=0;
-    int nDef=0;
-    int nSup=0;
-    List<Carta> mao = new ArrayList<>();
+class Bot extends Jogador {
+    
     public Bot()
     {
-        nome= "Bot";
-        id=202565001;
+        super("Bot",202567001);
     }
+
+    @Override
     public void defineAleatorio() throws IOException
     {
         List<Carta> cartas = LeArquivo.lerCartas("ataque.csv");
@@ -63,11 +56,5 @@ class Bot {
                 cartas.remove(indiceEscolhido);
                 nSup++;
             }
-        System.out.println("As cartas escolhidas foram:");
-        for(Carta a : mao)
-            {
-                a.exibeCarta();
-            }
-         
     }
 }
