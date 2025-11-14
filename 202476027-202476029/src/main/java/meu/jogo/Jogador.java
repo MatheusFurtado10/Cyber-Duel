@@ -218,7 +218,7 @@ public class Jogador {
                   break;
               case 3:
                   respondeu=true;
-                  jogador.vida =0;
+                  jogador.rendeu =true;
                   break; 
 
               default:
