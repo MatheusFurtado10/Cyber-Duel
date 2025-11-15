@@ -24,12 +24,7 @@ public class Jogo {
         {
             a.exibeCarta();
         }
-        System.out.println("\n" + j2.nome + "\n Vida: " + j2.vida + "\n Energia: "+j2.energia);
-        System.out.println("Cartas na mesa:");
-        for(Carta a : j2.jogadas)
-        {
-            a.exibeCarta();
-        }
+        System.out.println("\n" + j2.nome + "\nVida: " + j2.vida + "\nEnergia: "+j2.energia);
     }
      public void iniciarJogo(Jogador j1, Jogador j2) {
         boolean ehTurno = true; 
@@ -37,11 +32,11 @@ public class Jogo {
         Scanner resposta = new Scanner(System.in);
 
         while (jogoAtivo) {
-            Jogador jogadorAtual = ehTurno ? j1 : j2;
-            Jogador oponente = ehTurno ? j2 : j1;
+            Jogador jogadorAtual = ehTurno ? j2 : j1;
+            Jogador oponente = ehTurno ? j1 : j2;
             // 1. Exibição do estado do jogo 
             System.out.println("\n--- TURNO DE " + jogadorAtual.nome.toUpperCase()+ " ---");
-            exibirEstado(j1, j2); 
+            exibirEstado(jogadorAtual,oponente ); 
             
            // 2. Lógica de Ação
             jogadorAtual.realizarAcao(jogadorAtual, resposta);
@@ -50,7 +45,7 @@ public class Jogo {
                  break;
             }
             System.out.println("\n--- TURNO DE " + oponente.nome.toUpperCase() + " ---");
-            exibirEstado(j1, j2);
+            exibirEstado(jogadorAtual,oponente ); 
 
            oponente.realizarAcao(oponente, resposta);
 

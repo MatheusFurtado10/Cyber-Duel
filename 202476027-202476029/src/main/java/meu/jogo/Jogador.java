@@ -232,7 +232,7 @@ public class Jogador {
         while(podeJogar){
             
             Scanner cartaSelecionada = new Scanner(System.in);
-            
+            System.out.println("Energia Restante: " + j1.energia);
           System.out.println("\n--- Açoes ---");
           System.out.println("1. Jogar Cartas");
           System.out.println("2. Parar de jogar");
@@ -249,7 +249,7 @@ public class Jogador {
                     }
                      System.out.println("Escolha a carta pelo número: ");
                     resposta = cartaSelecionada.nextInt()-1;
-                    if(j1.mao.get(resposta).custo < j1.energia){
+                    if(j1.mao.get(resposta).custo <= j1.energia){
                         j1.jogadas.add(j1.mao.get(resposta));
                         j1.energia -= j1.mao.get(resposta).custo;
                         System.out.println("Carta jogada");
