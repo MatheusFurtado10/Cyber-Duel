@@ -15,16 +15,17 @@ import java.util.Scanner;
  * @author mathe
  */
 public class Jogo { 
-
+    int rodada=1;
     public static void exibirEstado(Jogador j1,Jogador j2)
     {
-        System.out.println("\n" + j1.nome + "\nVida: " + j1.vida + "\nEnergia: "+j1.energia);
+        System.out.println("\n" + j1.nome.toUpperCase() + "\nVida: " + j1.vida + "\nEnergia: "+j1.energia);
         System.out.println("Cartas na mesa:");
         for(Carta a : j1.jogadas)
         {
             a.exibeCarta();
         }
-        System.out.println("\n" + j2.nome + "\nVida: " + j2.vida + "\nEnergia: "+j2.energia);
+        System.out.println("\n" + j2.nome.toUpperCase() + "\nVida: " + j2.vida + "\nEnergia: "+j2.energia);
+        System.out.println("---------------------");
     }
      public void iniciarJogo(Jogador j1, Jogador j2) {
         boolean ehTurno = true; 
@@ -35,6 +36,7 @@ public class Jogo {
             Jogador jogadorAtual = ehTurno ? j2 : j1;
             Jogador oponente = ehTurno ? j1 : j2;
             // 1. Exibição do estado do jogo 
+            System.out.println("---------"+rodada+"º RODADA------------");
             System.out.println("\n--- TURNO DE " + jogadorAtual.nome.toUpperCase()+ " ---");
             exibirEstado(jogadorAtual,oponente ); 
             
@@ -66,6 +68,7 @@ public class Jogo {
             
             // 5. Alterna o turno
             ehTurno = !ehTurno;
+            rodada+=1;
         }
     }
      
@@ -156,7 +159,7 @@ public class Jogo {
     {
         Jogo um = new Jogo(); 
         Scanner resposta = new Scanner(System.in);           
-        System.out.println("Serao quantos jogadores?\n Responda com 1 ou 2");
+        System.out.println("Serao quantos jogadores?\nResponda com 1 ou 2");
         int nj = resposta.nextInt();
         Scanner nomer = new Scanner(System.in);
         System.out.println("Insira seu nome:");
@@ -164,7 +167,7 @@ public class Jogo {
         System.out.println("Agora insira seu id:");
         int id = nomer.nextInt();
         Jogador j1 = new Jogador(nome,id);
-        System.out.println("Seleção Aleatória?\n Responda 1 para 'sim' ou 0 para 'nao'");
+        System.out.println("Seleção Aleatória?\nResponda 1 para 'sim' ou 0 para 'nao'");
         int aleatorio = resposta.nextInt();
         j1.escolheCarta(aleatorio);
         if(nj == 1){

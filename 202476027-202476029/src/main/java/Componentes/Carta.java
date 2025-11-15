@@ -27,7 +27,7 @@ package Componentes;
     
     public String exibeCartaSimples()
         {
-            return(this.nome + " Poder: " + this.poder + " Custo:" + this.custo);
+            return(this.nome + " Tipo: " + this.tipo +" Poder: " + this.poder + " Custo:" + this.custo);
         }
     
     public void exibeCarta()

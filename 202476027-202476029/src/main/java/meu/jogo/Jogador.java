@@ -28,6 +28,7 @@ public class Jogador {
    boolean rendeu = false;
    List<Carta> mao = new ArrayList<>();
    List<Carta> jogadas =  new ArrayList<>(); 
+   List<Carta> maoReserva = new ArrayList<>();
    
     public Jogador(String n,int i)
     {
@@ -136,7 +137,8 @@ public class Jogador {
             {
                 a.exibeCarta();
             }
-         
+               maoReserva = mao;
+
     }
     public void defineAleatorio() throws IOException
     {
@@ -167,16 +169,19 @@ public class Jogador {
             cartas.remove(indiceEscolhido);
             nSup++;
          }
-         System.out.println("As cartas escolhidas foram:");
-        for(Carta a : mao)
-            {
-                a.exibeCarta();
-            }
-           
+                 maoReserva.addAll(mao);
+
+    }
+    public void reiniciaMao()
+    {
+        if(mao.isEmpty())
+        {
+            mao.addAll(maoReserva);
+        }
     }
 
     public void realizarAcao(Jogador jogador, Scanner resposta) {
-        System.out.println("Suas cartas sao:");
+        System.out.println("------------------\nSuas cartas sao:");
         for(Carta a : jogador.mao)
             {
                 System.out.print(jogador.mao.indexOf(a)+1 + " - ");
@@ -191,7 +196,7 @@ public class Jogador {
           System.out.println("1. Jogar Cartas");
           System.out.println("2. Passar a vez");
           System.out.println("3. Entregar o Sistema");
-          System.out.print("Escolha uma opção: ");
+          System.out.print("Escolha uma opção: \n");
 
           
           opcao = resposta.nextInt();
@@ -212,9 +217,7 @@ public class Jogador {
                   if(jogador.energia <10)
                   {
                   jogador.energia+=1;
-                  }
-                  System.out.println("Você escolheu a Opção 2.");
-                  
+                  }                  
                   break;
               case 3:
                   respondeu=true;
@@ -230,22 +233,25 @@ public class Jogador {
     public void jogaCarta(Jogador j1) {
        boolean podeJogar = true;
         while(podeJogar){
-            
+            j1.reiniciaMao();
             Scanner cartaSelecionada = new Scanner(System.in);
             System.out.println("Energia Restante: " + j1.energia);
-          System.out.println("\n--- Açoes ---");
-          System.out.println("1. Jogar Cartas");
-          System.out.println("2. Parar de jogar");
-          System.out.print("Escolha uma opção: ");
+            System.out.println("--- Açoes ---");
+            System.out.println("1. Jogar Cartas");
+            System.out.println("2. Parar de jogar");
+            System.out.print("Escolha uma opção: ");
             
-          int resposta = cartaSelecionada.nextInt();
+            int resposta = cartaSelecionada.nextInt();
             
             switch(resposta){
                 case 1:
+                                j1.reiniciaMao();
+
+                    System.out.println("------------------------------");
                      for(Carta a : j1.mao)
                     {
-                        System.out.print(j1.mao.indexOf(a)+1 + " - ");
-                        a.exibeCarta();
+                        System.out.println(j1.mao.indexOf(a)+1 + " - " + a.exibeCartaSimples());
+                        
                     }
                      System.out.println("Escolha a carta pelo número: ");
                     resposta = cartaSelecionada.nextInt()-1;
