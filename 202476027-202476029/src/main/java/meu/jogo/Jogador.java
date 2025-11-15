@@ -200,7 +200,7 @@ public class Jogador {
           switch (opcao) {
               case 1:
                   respondeu = true;
-                  jogador.jogaCarta();
+                  jogador.jogaCarta(jogador);
                    if(jogador.energia <10)
                   {
                   jogador.energia+=1;
@@ -227,7 +227,42 @@ public class Jogador {
         }
     }
 
-    public void jogaCarta() {
-       
+    public void jogaCarta(Jogador j1) {
+       boolean podeJogar = true;
+        while(podeJogar){
+            
+            Scanner cartaSelecionada = new Scanner(System.in);
+            
+          System.out.println("\n--- Açoes ---");
+          System.out.println("1. Jogar Cartas");
+          System.out.println("2. Parar de jogar");
+          System.out.print("Escolha uma opção: ");
+            
+          int resposta = cartaSelecionada.nextInt();
+            
+            switch(resposta){
+                case 1:
+                     for(Carta a : j1.mao)
+                    {
+                        System.out.print(j1.mao.indexOf(a)+1 + " - ");
+                        a.exibeCarta();
+                    }
+                     System.out.println("Escolha a carta pelo número: ");
+                    resposta = cartaSelecionada.nextInt()-1;
+                    if(j1.mao.get(resposta).custo < j1.energia){
+                        j1.jogadas.add(j1.mao.get(resposta));
+                        j1.energia -= j1.mao.get(resposta).custo;
+                        System.out.println("Carta jogada");
+                        j1.mao.remove(resposta);
+                        break;
+                    }
+                    System.out.println("Energia insuficiente para jogar esta carta! Escolha outra");
+                    break;
+                    
+                case 2:
+                    podeJogar = false;
+                    break;
+            }
+        }
     }
 }

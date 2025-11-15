@@ -9,6 +9,7 @@ import Componentes.LeArquivo;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -56,5 +57,69 @@ class Bot extends Jogador {
                 cartas.remove(indiceEscolhido);
                 nSup++;
             }
+    }
+    @Override
+    public void realizarAcao(Jogador jogador, Scanner resposta){
+        boolean podeJogar = true;
+        while(jogador.energia>2 && podeJogar)
+        {
+            if(jogador.vida > 75)
+            {
+                for(Carta a : jogador.mao)
+                {
+                    if("ATAQUE".equals(a.tipo))
+                    {
+                        if(a.custo < jogador.energia)
+                        {
+                            jogador.jogadas.add(a);
+                            jogador.mao.remove(a);
+                            jogador.energia -= a.custo;
+                            break;
+                        }
+                        podeJogar = false;
+                    }
+                }
+                    
+            }
+            else if(jogador.vida > 25)
+            {
+                for(Carta a : jogador.mao)
+                {
+                    if("ATAQUE".equals(a.tipo))
+                    {
+                        jogador.jogadas.add(a);
+                        jogador.mao.remove(a);
+                        jogador.energia -= a.custo;
+                        break;
+                    }
+                }
+                 for(Carta a : jogador.mao)
+                {
+                    if("DEFESA".equals(a.tipo) && a.custo < jogador.energia)
+                    {
+                        jogador.jogadas.add(a);
+                        jogador.mao.remove(a);
+                        jogador.energia -= a.custo;
+                        break;
+                    }
+                    podeJogar = false;
+                }
+            }
+            else
+            {
+                for(Carta a : jogador.mao)
+                {
+                    if("DEFESA".equals(a.tipo) && a.custo < jogador.energia)
+                    {
+                        jogador.jogadas.add(a);
+                        jogador.mao.remove(a);
+                        jogador.energia -= a.custo;
+                        break;
+                    }
+                    podeJogar = false;
+                }
+            }
+        }
+        jogador.energia += 1;
     }
 }

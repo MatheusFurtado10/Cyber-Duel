@@ -16,17 +16,17 @@ import java.util.Scanner;
  */
 public class Jogo { 
 
-    public static void exibirEstado(Jogador j1,Jogador j2, List<Carta> j1jogadas,List<Carta> j2jogadas)
+    public static void exibirEstado(Jogador j1,Jogador j2)
     {
         System.out.println("\n" + j1.nome + "\nVida: " + j1.vida + "\nEnergia: "+j1.energia);
         System.out.println("Cartas na mesa:");
-        for(Carta a : j1jogadas)
+        for(Carta a : j1.jogadas)
         {
             a.exibeCarta();
         }
         System.out.println("\n" + j2.nome + "\n Vida: " + j2.vida + "\n Energia: "+j2.energia);
         System.out.println("Cartas na mesa:");
-        for(Carta a : j2jogadas)
+        for(Carta a : j2.jogadas)
         {
             a.exibeCarta();
         }
@@ -41,7 +41,7 @@ public class Jogo {
             Jogador oponente = ehTurno ? j2 : j1;
             // 1. Exibição do estado do jogo 
             System.out.println("\n--- TURNO DE " + jogadorAtual.nome.toUpperCase()+ " ---");
-            exibirEstado(j1, j2, j1.jogadas,j2.jogadas); 
+            exibirEstado(j1, j2); 
             
            // 2. Lógica de Ação
             jogadorAtual.realizarAcao(jogadorAtual, resposta);
@@ -50,7 +50,7 @@ public class Jogo {
                  break;
             }
             System.out.println("\n--- TURNO DE " + oponente.nome.toUpperCase() + " ---");
-            exibirEstado(j1, j2, j1.jogadas, j2.jogadas);
+            exibirEstado(j1, j2);
 
            oponente.realizarAcao(oponente, resposta);
 
@@ -135,8 +135,8 @@ public class Jogo {
 
         // Verificação da Condição Especial "Ataque vs Ataque"
         if (jogadorAtual_soAtaque && oponente_soAtaque) {
-            danoAoOponente = (int) oponente.ataque; 
-            danoAoJogador = (int) jogadorAtual.ataque; 
+            danoAoOponente = (int) jogadorAtual.ataque; 
+            danoAoJogador = (int) oponente.ataque; 
 
         } else {
 
@@ -151,6 +151,8 @@ public class Jogo {
         // Aplica o Dano à Vida
             oponente.vida -= danoAoOponente;
             jogadorAtual.vida -= danoAoJogador;
+            oponente.ataque = 0;
+            jogadorAtual.ataque = 0;
 
             }
 
