@@ -5,6 +5,8 @@
 package meu.jogo;
 
 import Componentes.Carta;
+import Componentes.CartaAtk;
+import Componentes.CartaSup;
 import Componentes.LeArquivo;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,10 +32,10 @@ public class Jogador {
    List<Carta> jogadas =  new ArrayList<>(); 
    List<Carta> maoReserva = new ArrayList<>();
    
-    public Jogador(String n,int i)
-    {
-        nome = n;
-        id = i;
+    public Jogador(String nomeEscolhido, int idEscolhido)
+    {   
+        nome= nomeEscolhido;
+        id= idEscolhido;
     }
     
     public static void imprimirLista(List<Carta> cartas, String tipo, int n) 
@@ -60,11 +62,21 @@ public class Jogador {
     public static int selecionarCarta(List<Carta> listaDisponivel, Scanner le) 
     {
         System.out.println("\nEscolha a carta pelo seu numero (1 a " + listaDisponivel.size() + "):");
-        
-        int indice = le.nextInt() - 1;
-
+        boolean entradaValida = false;
+        int indice = 0;
+        while(!entradaValida)
+        {
+        try {
+            indice = le.nextInt() - 1; 
+            entradaValida = true; 
+            
+        } catch (java.util.InputMismatchException e) {
+            System.out.println("Erro! Por favor, digite um número correspondente.");
+            le.next(); 
+        }
+        }
         if (indice < 0 || indice >= listaDisponivel.size()) {
-            System.out.println("❌ Escolha entre o numero correto de cartas!");
+            System.out.println("Erro! Escolha entre o numero correto de cartas!");
             return -1;
         }
 
@@ -74,6 +86,7 @@ public class Jogador {
         System.out.println("Tem certeza da sua escolha? Responda com 'sim' ou 'nao'.");
         String escolha = le.next();
         if (!escolha.equals("sim")){
+            System.out.println("Seleção Cancelada");
             return -1; 
         }
         return 1;
@@ -192,7 +205,7 @@ public class Jogador {
         boolean respondeu = false;
         while (!respondeu) {
           // Exibe as opções do menu
-          System.out.println("\n--- Açoes ---");
+          System.out.println("\n--- Menu ---");
           System.out.println("1. Jogar Cartas");
           System.out.println("2. Passar a vez");
           System.out.println("3. Entregar o Sistema");
@@ -235,25 +248,25 @@ public class Jogador {
         while(podeJogar){
             j1.reiniciaMao();
             Scanner cartaSelecionada = new Scanner(System.in);
-            System.out.println("Energia Restante: " + j1.energia);
-            System.out.println("--- Açoes ---");
-            System.out.println("1. Jogar Cartas");
+            
+            System.out.println("--- Jogando Cartas ---");
+            System.out.println("1. Continuar");
             System.out.println("2. Parar de jogar");
+            System.out.println("Energia Restante: " + j1.energia);
             System.out.print("Escolha uma opção: ");
             
             int resposta = cartaSelecionada.nextInt();
             
             switch(resposta){
                 case 1:
-                                j1.reiniciaMao();
-
+                    j1.reiniciaMao();
                     System.out.println("------------------------------");
                      for(Carta a : j1.mao)
                     {
                         System.out.println(j1.mao.indexOf(a)+1 + " - " + a.exibeCartaSimples());
                         
                     }
-                     System.out.println("Escolha a carta pelo número: ");
+                    System.out.println("Escolha a carta pelo número: ");
                     resposta = cartaSelecionada.nextInt()-1;
                     if(j1.mao.get(resposta).custo <= j1.energia){
                         j1.jogadas.add(j1.mao.get(resposta));
@@ -270,5 +283,96 @@ public class Jogador {
                     break;
             }
         }
+    }
+    public CartaAtk maiorAtaque()
+    {
+        CartaAtk maior= new CartaAtk(" "," ",0,0," ");
+        for(Carta a : jogadas)
+        {
+            if(a.poder > maior.poder && a.tipo.equals("ATAQUE"))
+            {
+                maior= (CartaAtk)a;
+            }
+        }
+        return maior;
+    }
+    
+    public void calculaCartas(Jogador j1)
+    {
+         for(int i=0;i<j1.jogadas.size();i++)
+        {
+            switch(j1.jogadas.get(i).tipo)
+            {
+                case "ATAQUE" -> {
+                    j1.ataque+=j1.jogadas.get(i).poder;
+                    break;
+                }
+                case "DEFESA" -> {
+                    j1.defesa+=j1.jogadas.get(i).poder;
+                    break;
+                }
+            }
+        }  
+    }
+    public void calculaSuportes(Jogador j1, Jogador j2)
+    {
+        
+        for(int i=0;i<j1.jogadas.size();i++)
+            {
+                if(j1.jogadas.get(i).tipo.equals("SUPORTE"))
+                        {
+                            CartaSup mesa = (CartaSup) j1.jogadas.get(i);
+                            switch(mesa.efeito)
+                                {
+                                    case "AUMENTA_ATAQUE" -> 
+                                    {
+                                        j1.maiorAtaque().poder *= (1 + j1.jogadas.get(i).poder);
+                                        j1.ataque = 0;
+                                        j1.defesa = 0;
+                                        j1.calculaCartas(j1);
+                                        System.out.println("A carta " + j1.maiorAtaque().nome + " do jogador " + j1.nome + " teve seu ataque aumentado em " +
+                                        j1.jogadas.get(i).poder + " resultando em " + j1.maiorAtaque().poder);
+                                    }
+                                    case "DIMINUI_ATAQUE" -> 
+                                    {
+                                        j2.ataque -= j2.ataque * j1.jogadas.get(i).poder ;
+                                        System.out.println("O jogador " + j2.nome + " teve seu ataque reduzido em " +
+                                        j1.jogadas.get(i).poder + " resultando em " + j2.ataque);
+                                    }
+                                    case "AUMENTA_VIDA" -> 
+                                    {   
+                                        j1.vida +=  j1.jogadas.get(i).poder;
+                                         
+                                        System.out.println("O jogador " + j1.nome + " teve sua vida resturada em " +
+                                                j1.jogadas.get(i).poder + " resultando em " + j1.vida);
+                                     }
+                                }
+                        }
+            }
+        for(int i=0;i<j2.jogadas.size();i++)
+            {
+                if(j2.jogadas.get(i).tipo.equals("SUPORTE"))
+                        {
+                            CartaSup mesa = (CartaSup) j2.jogadas.get(i);
+                            switch(mesa.efeito)
+                                {
+                                    case "AUMENTA_ATAQUE":  j2.maiorAtaque().poder *= (1 + j2.jogadas.get(i).poder);
+                                                            j2.ataque = 0;
+                                                            j2.defesa = 0;
+                                                            j2.calculaCartas(j2);
+                                                            System.out.println("A carta " + j2.maiorAtaque().nome + "do jogador " + j2.nome + " teve seu ataque aumentado em " +
+                                                            j2.jogadas.get(i).poder + " resultando em " + j2.maiorAtaque().poder);
+                                                            break;
+                                    case "DIMINUI_ATAQUE": j1.ataque -= j1.ataque * j2.jogadas.get(i).poder ;   
+                                                            System.out.println("O jogador " + j1.nome + " teve seu ataque reduzido em " +
+                                                            j2.jogadas.get(i).poder + " resultando em " + j1.ataque);break;
+                                    case "AUMENTA_VIDA": 
+                                                        j2.vida +=  j2.jogadas.get(i).poder; 
+                                                        System.out.println("O jogador " + j2.nome + " teve sua vida resturada em " +
+                                                        j2.jogadas.get(i).poder + " resultando em " + j2.vida);
+                                                        break;
+                                }
+                        }
+            }
     }
 }

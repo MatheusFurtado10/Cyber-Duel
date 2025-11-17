@@ -23,6 +23,6 @@ public class CartaSup extends Carta {
     @Override
     public void exibeCarta()
     {
-        System.out.println(this.nome + " " + this.tipo + " " + this.poder + " " + this.custo + " "+this.efeito + " " + this.descricao);
+        System.out.println(this.nome + " Tipo: " + this.tipo + " Poder:" + this.poder + " Custo:" + this.custo + " Efeito: "+this.efeito + " Descrição:" + this.descricao);
     }
 }

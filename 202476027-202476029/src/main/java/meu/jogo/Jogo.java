@@ -17,23 +17,40 @@ import java.util.Random;
  */
 public class Jogo { 
     int rodada=1;
+    public static int validaEntrada(Scanner resposta)
+    {
+        int numero =0;
+        boolean entradaValida = false;
+        while(!entradaValida)
+        {
+        try {
+            numero = resposta.nextInt();
+            entradaValida = true; 
+            
+        } catch (java.util.InputMismatchException e) {
+            
+            System.out.println("Erro! Por favor, digite um número.");
+            resposta.next(); 
+        }
+        }
+        return numero;
+    }
     public static void exibirEstado(Jogador j1,Jogador j2)
     {
-        System.out.println("\n" + j1.nome.toUpperCase() + "\nVida: " + j1.vida + "\nEnergia: "+j1.energia);
+        System.out.println("\n" + j1.nome.toUpperCase() + "\nID:"+ j1.id + "\nVida: " + j1.vida + "\nEnergia: "+j1.energia);
         System.out.println("Cartas na mesa:");
         for(Carta a : j1.jogadas)
         {
             a.exibeCarta();
         }
-        System.out.println("\n" + j2.nome.toUpperCase() + "\nVida: " + j2.vida + "\nEnergia: "+j2.energia);
+        System.out.println("\n" + j2.nome.toUpperCase() + "\nID:"+ j2.id + "\nVida: " + j2.vida + "\nEnergia: "+j2.energia);
         System.out.println("---------------------");
     }
      public void iniciarJogo(Jogador j1, Jogador j2) {
         Random rand = new Random();
-        boolean ehTurno = rand.nextBoolean(); // escolhe aleatoriamente quem começa
+        boolean ehTurno = true; // escolhe aleatoriamente quem começa
         boolean jogoAtivo = true;
         Scanner resposta = new Scanner(System.in);
-        System.out.println("DEBUG -> ehTurno sorteado = " + ehTurno);
         while (jogoAtivo) {
             Jogador jogadorAtual = ehTurno ? j2 : j1;
             Jogador oponente = ehTurno ? j1 : j2;
@@ -78,115 +95,87 @@ public class Jogo {
          System.out.println("O jogador "+vencedor.nome + " ganhou de " + perdedor.nome + " com a vida restante de " + vencedor.vida + " pontos!");
     }
 
-    public void calculaConfronto(Jogador jogadorAtual, Jogador oponente) {
-        boolean jogadorAtual_soAtaque = true; // Começa como true, se for jogado algo diferente, vira false
-        boolean oponente_soAtaque = true;
-        for(int i=0;i<jogadorAtual.jogadas.size();i++)
-        {
-            switch(jogadorAtual.jogadas.get(i).tipo)
-            {
-                case "ATAQUE" -> {
-                    jogadorAtual.ataque+=jogadorAtual.jogadas.get(i).poder;
-                }
-                case "DEFESA" -> {
-                    jogadorAtual.defesa+=jogadorAtual.jogadas.get(i).poder;
-                    jogadorAtual_soAtaque = false;
-                }
-                case "SUPORTE" -> {
-                    jogadorAtual_soAtaque = false;
-                    CartaSup mesa = (CartaSup) jogadorAtual.jogadas.get(i);
-                    switch(mesa.efeito)
-                    {
-                        case "AUMENTA_ATAQUE":  jogadorAtual.ataque *= jogadorAtual.jogadas.get(i).poder ;
-                        case "DIMINUI_ATAQUE": oponente.ataque -= oponente.ataque * jogadorAtual.jogadas.get(i).poder ;
-                        case "AUMENTA_VIDA": jogadorAtual.vida +=  jogadorAtual.jogadas.get(i).poder ;
-                        default: break;
-                    }
-                    }  
-                }
-        }
-         for(int i=0;i<oponente.jogadas.size();i++)
-        {
-            switch(oponente.jogadas.get(i).tipo)
-            {
-                case "ATAQUE" -> {
-                    oponente.ataque+=oponente.jogadas.get(i).poder;
-                    
-                }
-                case "DEFESA" -> {
-                    oponente.defesa+=oponente.jogadas.get(i).poder;
-                    oponente_soAtaque = false;
-                }
-                case "SUPORTE" -> {
-                    oponente_soAtaque = false;
-                    CartaSup mesa = (CartaSup) oponente.jogadas.get(i);
-                    switch(mesa.efeito)
-                    {
-                        case "AUMENTA_ATAQUE":  oponente.ataque *= 1 + oponente.jogadas.get(i).poder ;
-                        case "DIMINUI_ATAQUE": jogadorAtual.defesa -= jogadorAtual.ataque * oponente.jogadas.get(i).poder ;
-                        case "AUMENTA_VIDA": oponente.vida +=  oponente.jogadas.get(i).poder ;
-                        default: break;
-                    }
-                    }  
-                }
-        }
-        int danoAoOponente = 0;
-        int danoAoJogador = 0;
+    public void calculaConfronto(Jogador jogadorAtual, Jogador oponente) 
+    {
+        jogadorAtual.calculaCartas(jogadorAtual);
+        oponente.calculaCartas(oponente);
+        jogadorAtual.calculaSuportes(jogadorAtual, oponente);
+        
+        int danoAoOponente = (int) Math.max(0, jogadorAtual.ataque - oponente.defesa);
+        int danoAoJogador = (int) Math.max(0, oponente.ataque - jogadorAtual.defesa);
 
-        // Verificação da Condição Especial "Ataque vs Ataque"
-        if (jogadorAtual_soAtaque && oponente_soAtaque) {
-            danoAoOponente = (int) jogadorAtual.ataque; 
-            danoAoJogador = (int) oponente.ataque; 
-
-        } else {
-
-            danoAoOponente = (int) Math.max(0, jogadorAtual.ataque - oponente.defesa);
-
-
-            danoAoJogador = (int) Math.max(0, oponente.ataque - jogadorAtual.defesa);
-
-
-        }
-
+        System.out.println("---------------------------------------------------------------\nResultado da " + rodada + "º Rodada!");
+        System.out.println(jogadorAtual.nome.toUpperCase() + " Possuia " + jogadorAtual.ataque + " de Ataque e " + jogadorAtual.defesa + " de Defesa!");
+        System.out.println(oponente.nome.toUpperCase() + " Possuia " + oponente.ataque + " de Ataque e " + oponente.defesa + " de Defesa!");
+        System.out.println("Resultando em " + jogadorAtual.nome.toUpperCase() + " receber " + danoAoJogador + " de dano enquanto " + oponente.nome.toUpperCase() + 
+        " recebeu " + danoAoOponente + " de dano!");
+        System.out.println("---------------------------------------------------------------");
+        
         // Aplica o Dano à Vida
-            oponente.vida -= danoAoOponente;
-            jogadorAtual.vida -= danoAoJogador;
-            oponente.ataque = 0;
-            jogadorAtual.ataque = 0;
+        oponente.vida = (int) (Math.round((oponente.vida - danoAoOponente)/ 10.0) * 10 );
+        jogadorAtual.vida = (int) (Math.round((jogadorAtual.vida - danoAoJogador)/ 10.0 ) * 10);
+        if(jogadorAtual.vida > 100)
+        {
+            jogadorAtual.vida = 100;
+        }
+        if(oponente.vida > 100)
+        {
+            oponente.vida = 100;
+        }
+        oponente.defesa =0 ;
+        oponente.ataque = 0;
+        jogadorAtual.ataque = 0;
+        jogadorAtual.defesa=0;
 
-            }
+    }
 
     
     public static void main(String[] args) throws IOException 
     {
+        
         Jogo um = new Jogo(); 
+        int numeroJogadores =1;
+        int Aleatoriedade = 1;
         Scanner resposta = new Scanner(System.in);           
-        System.out.println("Serao quantos jogadores?\nResponda com 1 ou 2");
-        int nj = resposta.nextInt();
-        Scanner nomer = new Scanner(System.in);
+        System.out.println("""
+                           Bem vindo ao Cyber Duel: Guerra de Hackers!
+                           Em um futuro pr\u00f3ximo, as guerras deixaram os campos f\u00edsicos e passaram a ser
+                           travadas no ciberespa\u00e7o. Megacorpora\u00e7\u00f5es disputam poder por meio de ataques
+                           silenciosos, enquanto os hackers mais habilidosos do planeta se enfrentam em
+                           duelos estrat\u00e9gicos, usando cartas digitais baseadas em NFTs como armas de
+                           combate.
+                           Cada carta representa uma ferramenta \u00fanica \u2014 ataques liberam v\u00edrus e exploits
+                           poderosos, defesas erguem firewalls e contramedidas, e cartas de suporte
+                           garantem vantagens t\u00e1ticas cruciais. Nesse universo, cada jogador assume o
+                           papel de um hacker com estilo e estrat\u00e9gias pr\u00f3prias, lutando para dominar
+                           sistemas e proteger seus servidores contra as investidas do inimigo.
+                           
+                           Agora escolha quantos jogadores vão participar do duelo!
+                           Responda com 1 ou 2""");
+        numeroJogadores = Jogo.validaEntrada (resposta);
+        resposta.nextLine();
         System.out.println("Insira seu nome:");
-        String nome = nomer.nextLine();
+        String nome = resposta.nextLine();
         System.out.println("Agora insira seu id:");
-        int id = nomer.nextInt();
-        Jogador j1 = new Jogador(nome,id);
-        System.out.println("Seleção Aleatória?\nResponda 1 para 'sim' ou 0 para 'nao'");
-        int aleatorio = resposta.nextInt();
-        j1.escolheCarta(aleatorio);
-        if(nj == 1){
+        int id = Jogo.validaEntrada(resposta);
+        Jogador j1 = new Jogador( nome,id);
+        System.out.println("Deseja utilizar a seleção de carta aleatória?\n Responda 1 para 'sim' ou 0 para 'não'");
+         Aleatoriedade = Jogo.validaEntrada(resposta);
+        j1.escolheCarta(Aleatoriedade);
+        if(numeroJogadores == 1){
            Bot robo = new Bot();
            robo.defineAleatorio();
            um.iniciarJogo(j1,robo);
         }
         else {
-            nomer = new Scanner(System.in);
             System.out.println("Insira seu nome:");
-            nome = nomer.nextLine();
+            nome = resposta.nextLine();
             System.out.println("Agora insira seu id:");
-            id = nomer.nextInt();
+            id = Jogo.validaEntrada(resposta);
             Jogador j2 = new Jogador(nome,id);
-            System.out.println("Seleção Aleatória?\n Responda 1 para 'sim' ou 0 para 'nao'");
-            aleatorio = resposta.nextInt();
-            j2.escolheCarta(aleatorio);
+            System.out.println("Deseja utilizar a seleção de carta aleatória?\n Responda 1 para 'sim' ou 0 para 'não'");
+            Aleatoriedade = resposta.nextInt();
+            j2.escolheCarta(Aleatoriedade);
             um.iniciarJogo(j1,j2);
         } 
     }  

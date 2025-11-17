@@ -12,53 +12,39 @@ import java.util.Scanner;
  * @author Lucas
  */
 class Bot extends Jogador {
-    
+    int ataqueJogado = 0;
+    int defesaJogado =0;
     public Bot()
     {
         super("Bot",202567001);
     }
     @Override
-    public void realizarAcao(Jogador jogador, Scanner resposta){
+    public void realizarAcao(Jogador jogador, Scanner resposta)
+    {
         boolean podeJogar = true;
         while(jogador.energia>2 && podeJogar)
         {
             jogador.reiniciaMao();
-            if(jogador.vida > 75)
+            if(jogador.vida > 70)
             {
                 for(Carta a : jogador.mao)
                 {
-                    if("ATAQUE".equals(a.tipo))
+                    if("ATAQUE".equals(a.tipo) && ataqueJogado<3)
                     {
                         if(a.custo <= jogador.energia)
                         {
                             jogador.jogadas.add(a);
                             jogador.mao.remove(a);
+                            ataqueJogado+=1;
                             jogador.energia -= a.custo;
                             break;
                         }
                         podeJogar = false;
                     }
                 }
-                    
-            }
-            else if(jogador.vida > 25)
-            {
                 for(Carta a : jogador.mao)
                 {
-                    if("ATAQUE".equals(a.tipo))
-                    {
-                        if(a.custo <= jogador.energia)
-                        {
-                            jogador.jogadas.add(a);
-                            jogador.mao.remove(a);
-                            jogador.energia -= a.custo;
-                            break;
-                         }
-                    }
-                }
-                 for(Carta a : jogador.mao)
-                {
-                    if("DEFESA".equals(a.tipo))
+                    if("DEFESA".equals(a.tipo) && ataqueJogado == 3)
                     {
                        if(a.custo <= jogador.energia)
                         {
@@ -67,16 +53,91 @@ class Bot extends Jogador {
                             jogador.energia -= a.custo;
                             break;
                          }
-                        
+                        podeJogar = false;
                     }
-                    podeJogar = false;
                 }
+                for(Carta a : jogador.mao)
+                {
+                    if("SUPORTE".equals(a.tipo) && ataqueJogado == 3)
+                    {
+                       if(a.custo <= jogador.energia)
+                        {
+                            jogador.jogadas.add(a);
+                            jogador.mao.remove(a);
+                            jogador.energia -= a.custo;
+                            break;
+                         }
+                        podeJogar = false;
+                    }
+                }
+                    
             }
-            else
+            else if(jogador.vida > 30 && jogador.vida < 70)
             {
                 for(Carta a : jogador.mao)
                 {
-                    if("DEFESA".equals(a.tipo))
+                    if("ATAQUE".equals(a.tipo) && ataqueJogado < 1)
+                    {
+                        if(a.custo <= jogador.energia)
+                        {
+                            jogador.jogadas.add(a);
+                            jogador.mao.remove(a);
+                            ataqueJogado+=1;
+                            jogador.energia -= a.custo;
+                            break;
+                         }
+                        podeJogar = false;
+                    }
+                }
+                 for(Carta a : jogador.mao)
+                {
+                    if("DEFESA".equals(a.tipo) && defesaJogado < 2)
+                    {
+                       if(a.custo <= jogador.energia)
+                        {
+                            jogador.jogadas.add(a);
+                            jogador.mao.remove(a);
+                            defesaJogado+=1;
+                            jogador.energia -= a.custo;
+                            break;
+                         }
+                        podeJogar = false;
+                    }
+                }
+            }
+            else if(jogador.energia > 5 )
+            {
+                for(Carta a : jogador.mao)
+                {
+                    if("DEFESA".equals(a.tipo) && defesaJogado<1)
+                    {
+                        if(a.custo <= jogador.energia){
+                            jogador.jogadas.add(a);
+                            jogador.mao.remove(a);
+                            defesaJogado+=1;
+                            jogador.energia -= a.custo;
+                            break;
+                         }
+                        podeJogar = false;
+                    }
+                }
+                for(Carta a : jogador.mao)
+                {   
+                    if("ATAQUE".equals(a.tipo) && ataqueJogado<1)
+                    {
+                        if(a.custo <= jogador.energia){
+                           jogador.jogadas.add(a);
+                           jogador.mao.remove(a);
+                           ataqueJogado+=1;
+                           jogador.energia -= a.custo;
+                           break;
+                        }
+                        podeJogar = false;
+                    }
+                }
+                 for(Carta a : jogador.mao)
+                {   
+                    if("SUPORTE".equals(a.tipo))
                     {
                         if(a.custo <= jogador.energia){
                             jogador.jogadas.add(a);
@@ -84,11 +145,18 @@ class Bot extends Jogador {
                             jogador.energia -= a.custo;
                             break;
                          }
+                        podeJogar = false;
                     }
-                    podeJogar = false;
                 }
+            }else{
+                podeJogar = false;
             }
         }
-        jogador.energia += 1;
-    }
+        if(jogador.energia<10)
+            {
+                jogador.energia += 1;
+            }
+        ataqueJogado = 0;
+        defesaJogado =0;
+    }    
 }
