@@ -9,6 +9,7 @@ import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  *
@@ -28,10 +29,11 @@ public class Jogo {
         System.out.println("---------------------");
     }
      public void iniciarJogo(Jogador j1, Jogador j2) {
-        boolean ehTurno = true; 
+        Random rand = new Random();
+        boolean ehTurno = rand.nextBoolean(); // escolhe aleatoriamente quem começa
         boolean jogoAtivo = true;
         Scanner resposta = new Scanner(System.in);
-
+        System.out.println("DEBUG -> ehTurno sorteado = " + ehTurno);
         while (jogoAtivo) {
             Jogador jogadorAtual = ehTurno ? j2 : j1;
             Jogador oponente = ehTurno ? j1 : j2;
