@@ -67,7 +67,7 @@ public class Jogo {
     }
      public void iniciarJogo(Jogador j1, Jogador j2) {
         Random rand = new Random();
-        boolean ehTurno = rand.nextBoolean();; // escolhe aleatoriamente quem começa
+        boolean ehTurno = rand.nextBoolean(); // escolhe aleatoriamente quem começa
         boolean jogoAtivo = true;
         Scanner resposta = new Scanner(System.in);
         while (jogoAtivo) {
@@ -152,7 +152,7 @@ public class Jogo {
     public static void main(String[] args) throws IOException 
     {
         
-        /*Jogo um = new Jogo(); 
+        Jogo um = new Jogo(); 
         int numeroJogadores =1;
         int Aleatoriedade = 1;
         Scanner resposta = new Scanner(System.in);           
@@ -198,8 +198,8 @@ public class Jogo {
             j2.escolheCarta(Aleatoriedade);
             um.iniciarJogo(j1,j2);
         } 
-    }  */
+    }  /*
         IfGui tela = new IfGui();
         tela.setVisible(true);
-    }
+        */
 }
