@@ -28,9 +28,9 @@ public class Jogador {
    int nDef =0;
    int nSup =0;
    boolean rendeu = false;
-   List<Carta> mao = new ArrayList<>();
-   List<Carta> jogadas =  new ArrayList<>(); 
-   List<Carta> maoReserva = new ArrayList<>();
+   public List<Carta> mao = new ArrayList<>();
+   public List<Carta> jogadas =  new ArrayList<>(); 
+   public List<Carta> maoReserva = new ArrayList<>();
    
     public Jogador(String nomeEscolhido, int idEscolhido)
     {   
@@ -94,6 +94,15 @@ public class Jogador {
     public void escolheCarta(int t) throws IOException
     {
         if(t==1)
+        {
+            this.defineAleatorio();
+        }else{
+            this.defineCarta();
+        }
+    }
+    public void escolheCartaUI(boolean t) throws IOException
+    {
+        if(t==true)
         {
             this.defineAleatorio();
         }else{

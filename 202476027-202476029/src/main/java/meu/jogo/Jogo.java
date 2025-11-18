@@ -5,11 +5,14 @@
 package meu.jogo;
 import Componentes.Carta;
 import Componentes.CartaSup;
+import FrJOGO.IfGui;
+import FrJOGO.IfJogador;
 import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +20,22 @@ import java.util.Random;
  */
 public class Jogo { 
     int rodada=1;
+    public static int validaEntradaUI(int numero, IfJogador a)
+    { int n=1;
+        boolean entradaValida = false;
+        while(!entradaValida)
+        {
+        try {
+             n = numero;
+            entradaValida = true; 
+            
+        } catch (java.util.InputMismatchException e) {
+            JOptionPane.showMessageDialog(a,"Digita certo");
+        }
+        }
+       
+        return n;
+    }
     public static int validaEntrada(Scanner resposta)
     {
         int numero =0;
@@ -48,7 +67,7 @@ public class Jogo {
     }
      public void iniciarJogo(Jogador j1, Jogador j2) {
         Random rand = new Random();
-        boolean ehTurno = true; // escolhe aleatoriamente quem começa
+        boolean ehTurno = rand.nextBoolean();; // escolhe aleatoriamente quem começa
         boolean jogoAtivo = true;
         Scanner resposta = new Scanner(System.in);
         while (jogoAtivo) {
@@ -133,7 +152,7 @@ public class Jogo {
     public static void main(String[] args) throws IOException 
     {
         
-        Jogo um = new Jogo(); 
+        /*Jogo um = new Jogo(); 
         int numeroJogadores =1;
         int Aleatoriedade = 1;
         Scanner resposta = new Scanner(System.in);           
@@ -179,5 +198,8 @@ public class Jogo {
             j2.escolheCarta(Aleatoriedade);
             um.iniciarJogo(j1,j2);
         } 
-    }  
+    }  */
+        IfGui tela = new IfGui();
+        tela.setVisible(true);
+    }
 }

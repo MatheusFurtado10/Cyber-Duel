@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author Lucas
  */
-class Bot extends Jogador {
+public class Bot extends Jogador {
     int ataqueJogado = 0;
     int defesaJogado =0;
     public Bot()
