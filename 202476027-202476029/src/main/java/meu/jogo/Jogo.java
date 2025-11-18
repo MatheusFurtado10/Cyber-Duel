@@ -168,6 +168,7 @@ public class Jogo {
            um.iniciarJogo(j1,robo);
         }
         else {
+            resposta.nextLine();
             System.out.println("Insira seu nome:");
             nome = resposta.nextLine();
             System.out.println("Agora insira seu id:");
