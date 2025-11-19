@@ -104,6 +104,20 @@ public class Bot extends Jogador {
                         podeJogar = false;
                     }
                 }
+                 for(Carta a : jogador.mao)
+                {
+                    if("SUPORTE".equals(a.tipo))
+                    {
+                       if(a.custo <= jogador.energia)
+                        {
+                            jogador.jogadas.add(a);
+                            jogador.mao.remove(a);
+                            jogador.energia -= a.custo;
+                            break;
+                         }
+                        podeJogar = false;
+                    }
+                }
             }
             else if(jogador.energia > 5 )
             {

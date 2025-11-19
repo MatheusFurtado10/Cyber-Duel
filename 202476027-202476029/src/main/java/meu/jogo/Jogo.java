@@ -73,12 +73,12 @@ public class Jogo {
         while (jogoAtivo) {
             Jogador jogadorAtual = ehTurno ? j2 : j1;
             Jogador oponente = ehTurno ? j1 : j2;
-            // 1. Exibição do estado do jogo 
+            // Exibição do estado do jogo 
             System.out.println("---------"+rodada+"º RODADA------------");
             System.out.println("\n--- TURNO DE " + jogadorAtual.nome.toUpperCase()+ " ---");
             exibirEstado(jogadorAtual,oponente ); 
             
-           // 2. Lógica de Ação
+           // Lógica de Ação
             jogadorAtual.realizarAcao(jogadorAtual, resposta);
             if (jogadorAtual.rendeu) { 
                  finalizarJogo(oponente, jogadorAtual);
@@ -93,18 +93,18 @@ public class Jogo {
                 finalizarJogo(jogadorAtual,oponente);
                 break;
             }
-            // 3. Cálculo de Dano, Vida e Energia
+            // Cálculo de Dano, Vida e Energia
             calculaConfronto(jogadorAtual, oponente);
             jogadorAtual.jogadas.clear();
             oponente.jogadas.clear();
             
-            // 4. Verificação de Fim de Jogo 
+            // Verificação de Fim de Jogo 
             if (j1.vida<= 0 || j2.vida <= 0) {
                 jogoAtivo = false;
                 finalizarJogo(j1.vida <= 0 ? j2 : j1, j1.vida <= 0 ? j1 : j2);
             }
             
-            // 5. Alterna o turno
+            // Alterna o turno
             ehTurno = !ehTurno;
             rodada+=1;
         }
@@ -171,11 +171,27 @@ public class Jogo {
                            
                            Agora escolha quantos jogadores vão participar do duelo!
                            Responda com 1 ou 2""");
-        numeroJogadores = Jogo.validaEntrada (resposta);
+         boolean indiceValido=false;
+        while(!indiceValido)
+        {
+            try{
+                 numeroJogadores = Jogo.validaEntrada (resposta);;
+                if(numeroJogadores == 1 || numeroJogadores ==2)
+                {
+                    indiceValido=true;
+                }else{
+                    System.out.println("Insira somente 1 ou 2");
+                }
+            }catch(java.util.InputMismatchException e){
+                System.out.println("Insira um número dentre as cartas");
+            }
+        }
+       
         resposta.nextLine();
         System.out.println("Insira seu nome:");
         String nome = resposta.nextLine();
         System.out.println("Agora insira seu id:");
+       
         int id = Jogo.validaEntrada(resposta);
         Jogador j1 = new Jogador( nome,id);
         System.out.println("Deseja utilizar a seleção de carta aleatória?\n Responda 1 para 'sim' ou 0 para 'não'");
