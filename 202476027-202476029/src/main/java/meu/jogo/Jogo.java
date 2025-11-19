@@ -66,7 +66,7 @@ public class Jogo {
         System.out.println("---------------------");
     }
      public void iniciarJogo(Jogador j1, Jogador j2) {
-        Random rand = new Random();
+       Random rand = new Random();
         boolean ehTurno = rand.nextBoolean(); // escolhe aleatoriamente quem começa
         boolean jogoAtivo = true;
         Scanner resposta = new Scanner(System.in);
@@ -198,8 +198,9 @@ public class Jogo {
             j2.escolheCarta(Aleatoriedade);
             um.iniciarJogo(j1,j2);
         } 
-    }  /*
-        IfGui tela = new IfGui();
-        tela.setVisible(true);
-        */
+     
+        /*IfGui tela = new IfGui();
+        tela.setVisible(true);*/
+    }     
 }
+

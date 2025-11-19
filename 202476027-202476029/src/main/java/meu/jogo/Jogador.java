@@ -221,7 +221,7 @@ public class Jogador {
           System.out.print("Escolha uma opção: \n");
 
           
-          opcao = resposta.nextInt();
+          opcao = Jogo.validaEntrada(resposta);
 
           
           switch (opcao) {
@@ -257,15 +257,50 @@ public class Jogador {
         while(podeJogar){
             j1.reiniciaMao();
             Scanner cartaSelecionada = new Scanner(System.in);
-            
+  
+            if(j1.jogadas.size() ==0)
+            {
+                   j1.reiniciaMao();
+                    System.out.println("------------------------------");
+                     for(Carta a : j1.mao)
+                    {
+                        System.out.println(j1.mao.indexOf(a)+1 + " - " + a.exibeCartaSimples());
+                        
+                    }
+                     
+                    System.out.println("Escolha a carta pelo número: ");
+                     boolean indiceValido=false;
+                      int resposta =0;
+                    while(!indiceValido)
+                    {
+                        try{
+                            resposta = Jogo.validaEntrada(cartaSelecionada)-1;
+                            if(resposta < j1.mao.size() && resposta>=0)
+                            {
+                                indiceValido=true;
+                            }else{
+                                System.out.println("Insira um número dentre as cartas");
+                            }
+                        }catch(java.util.InputMismatchException e){
+                            System.out.println("Insira um número dentre as cartas");
+                        }
+                    }
+                    if(j1.mao.get(resposta).custo <= j1.energia){
+                        j1.jogadas.add(j1.mao.get(resposta));
+                        j1.energia -= j1.mao.get(resposta).custo;
+                        System.out.println("Carta jogada");
+                        j1.mao.remove(resposta);
+                    }else{
+                    System.out.println("Energia insuficiente para jogar esta carta! Escolha outra");
+                    }
+            }else{
+                          
             System.out.println("--- Jogando Cartas ---");
             System.out.println("1. Continuar");
             System.out.println("2. Parar de jogar");
             System.out.println("Energia Restante: " + j1.energia);
             System.out.print("Escolha uma opção: ");
-            
-            int resposta = cartaSelecionada.nextInt();
-            
+            int resposta = Jogo.validaEntrada(cartaSelecionada);
             switch(resposta){
                 case 1:
                     j1.reiniciaMao();
@@ -276,7 +311,21 @@ public class Jogador {
                         
                     }
                     System.out.println("Escolha a carta pelo número: ");
-                    resposta = cartaSelecionada.nextInt()-1;
+                    boolean indiceValido=false;
+                    while(!indiceValido)
+                    {
+                        try{
+                            resposta = Jogo.validaEntrada(cartaSelecionada)-1;
+                            if(resposta < j1.mao.size() && resposta>=0)
+                            {
+                                indiceValido=true;
+                            }else{
+                                System.out.println("Insira um número dentre as cartas");
+                            }
+                        }catch(java.util.InputMismatchException e){
+                            System.out.println("Insira um número dentre as cartas");
+                        }
+                    }
                     if(j1.mao.get(resposta).custo <= j1.energia){
                         j1.jogadas.add(j1.mao.get(resposta));
                         j1.energia -= j1.mao.get(resposta).custo;
@@ -291,6 +340,7 @@ public class Jogador {
                     podeJogar = false;
                     break;
             }
+          }
         }
     }
     public CartaAtk maiorAtaque()

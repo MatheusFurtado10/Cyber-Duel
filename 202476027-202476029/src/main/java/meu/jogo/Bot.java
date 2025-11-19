@@ -22,16 +22,16 @@ public class Bot extends Jogador {
     public void realizarAcao(Jogador jogador, Scanner resposta)
     {
         boolean podeJogar = true;
-        while(jogador.energia>2 && podeJogar)
+        while(jogador.energia>3 && podeJogar)
         {
             jogador.reiniciaMao();
             if(jogador.vida > 70)
             {
                 for(Carta a : jogador.mao)
                 {
-                    if("ATAQUE".equals(a.tipo) && ataqueJogado<3)
+                    if("ATAQUE".equals(a.tipo) && ataqueJogado<2)
                     {
-                        if(a.custo <= jogador.energia)
+                        if(a.custo <= jogador.energia - ataqueJogado)
                         {
                             jogador.jogadas.add(a);
                             jogador.mao.remove(a);
@@ -44,9 +44,9 @@ public class Bot extends Jogador {
                 }
                 for(Carta a : jogador.mao)
                 {
-                    if("DEFESA".equals(a.tipo) && ataqueJogado == 3)
+                    if("DEFESA".equals(a.tipo) && defesaJogado < 1 )
                     {
-                       if(a.custo <= jogador.energia)
+                       if(a.custo <= jogador.energia-2)
                         {
                             jogador.jogadas.add(a);
                             jogador.mao.remove(a);
