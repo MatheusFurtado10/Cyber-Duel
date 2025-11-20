@@ -3,16 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-package FrJOGO;
+package br.ufjf.tela;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import meu.jogo.Bot;
-import meu.jogo.Jogador;
-import meu.jogo.Jogo;
+import br.ufjf.jogo.Bot;
+import br.ufjf.jogo.Jogador;
+import br.ufjf.jogo.Jogo;
 
 /**
  *
@@ -51,7 +51,6 @@ public class IfJogador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(872, 634));
-        setPreferredSize(new java.awt.Dimension(872, 634));
 
         jLabel1.setFont(new java.awt.Font("Hotel De Paris", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 204, 0));

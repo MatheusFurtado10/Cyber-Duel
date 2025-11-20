@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package meu.jogo;
-import Componentes.Carta;
-import Componentes.CartaSup;
-import FrJOGO.IfGui;
-import FrJOGO.IfJogador;
+package br.ufjf.jogo;
+import br.ufjf.componentes.Carta;
+import br.ufjf.componentes.CartaSup;
+import br.ufjf.componentes.LeArquivo;
+import br.ufjf.tela.IfGui;
+import br.ufjf.tela.IfJogador;
 import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -75,6 +76,7 @@ public class Jogo {
             Jogador oponente = ehTurno ? j1 : j2;
             // Exibição do estado do jogo 
             System.out.println("---------"+rodada+"º RODADA------------");
+            LeArquivo.escreveReplay("---------"+rodada+"º RODADA------------");
             System.out.println("\n--- TURNO DE " + jogadorAtual.nome.toUpperCase()+ " ---");
             exibirEstado(jogadorAtual,oponente ); 
             
@@ -94,7 +96,7 @@ public class Jogo {
                 break;
             }
             // Cálculo de Dano, Vida e Energia
-            calculaConfronto(jogadorAtual, oponente);
+            calculaConfronto(jogadorAtual, oponente);     
             jogadorAtual.jogadas.clear();
             oponente.jogadas.clear();
             
@@ -111,6 +113,7 @@ public class Jogo {
     }
      
      private void finalizarJogo(Jogador vencedor, Jogador perdedor) {
+         LeArquivo.escreveReplay("O jogador "+vencedor.nome + " ganhou de " + perdedor.nome + " com a vida restante de " + vencedor.vida + " pontos!");
          System.out.println("O jogador "+vencedor.nome + " ganhou de " + perdedor.nome + " com a vida restante de " + vencedor.vida + " pontos!");
     }
 
@@ -124,11 +127,17 @@ public class Jogo {
         int danoAoJogador = (int) Math.max(0, oponente.ataque - jogadorAtual.defesa);
 
         System.out.println("---------------------------------------------------------------\nResultado da " + rodada + "º Rodada!");
+        LeArquivo.escreveReplay("---------------------------------------------------------------\nResultado da " + rodada + "º Rodada!");
         System.out.println(jogadorAtual.nome.toUpperCase() + " Possuia " + jogadorAtual.ataque + " de Ataque e " + jogadorAtual.defesa + " de Defesa!");
+        LeArquivo.escreveReplay(jogadorAtual.nome.toUpperCase() + " Possuia " + jogadorAtual.ataque + " de Ataque e " + jogadorAtual.defesa + " de Defesa!");
         System.out.println(oponente.nome.toUpperCase() + " Possuia " + oponente.ataque + " de Ataque e " + oponente.defesa + " de Defesa!");
+        LeArquivo.escreveReplay(oponente.nome.toUpperCase() + " Possuia " + oponente.ataque + " de Ataque e " + oponente.defesa + " de Defesa!");
         System.out.println("Resultando em " + jogadorAtual.nome.toUpperCase() + " receber " + danoAoJogador + " de dano enquanto " + oponente.nome.toUpperCase() + 
         " recebeu " + danoAoOponente + " de dano!");
+        LeArquivo.escreveReplay("Resultando em " + jogadorAtual.nome.toUpperCase() + " receber " + danoAoJogador + " de dano enquanto " + oponente.nome.toUpperCase() + 
+        " recebeu " + danoAoOponente + " de dano!");
         System.out.println("---------------------------------------------------------------");
+        LeArquivo.escreveReplay("---------------------------------------------------------------");
         
         // Aplica o Dano à Vida
         oponente.vida = (int) (Math.round((oponente.vida - danoAoOponente)/ 10.0) * 10 );
@@ -174,32 +183,38 @@ public class Jogo {
          boolean indiceValido=false;
         while(!indiceValido)
         {
-            try{
-                 numeroJogadores = Jogo.validaEntrada (resposta);;
-                if(numeroJogadores == 1 || numeroJogadores ==2)
-                {
-                    indiceValido=true;
-                }else{
-                    System.out.println("Insira somente 1 ou 2");
-                }
-            }catch(java.util.InputMismatchException e){
-                System.out.println("Insira um número dentre as cartas");
-            }
+           numeroJogadores = Jogo.validaEntrada (resposta);
+           if(numeroJogadores == 1 || numeroJogadores ==2)
+           {
+               indiceValido=true;
+           }else{
+               System.out.println("Insira somente 1 ou 2");
+           }
         }
        
         resposta.nextLine();
         System.out.println("Insira seu nome:");
         String nome = resposta.nextLine();
         System.out.println("Agora insira seu id:");
-       
         int id = Jogo.validaEntrada(resposta);
         Jogador j1 = new Jogador( nome,id);
         System.out.println("Deseja utilizar a seleção de carta aleatória?\n Responda 1 para 'sim' ou 0 para 'não'");
-         Aleatoriedade = Jogo.validaEntrada(resposta);
+        indiceValido=false;
+        while(!indiceValido)
+        {
+            Aleatoriedade = Jogo.validaEntrada(resposta);
+            if(Aleatoriedade == 1 || Aleatoriedade ==0)
+           {
+               indiceValido=true;
+           }else{
+               System.out.println("Insira somente 1 ou 0");
+           }
+        }
+        
         j1.escolheCarta(Aleatoriedade);
         if(numeroJogadores == 1){
            Bot robo = new Bot();
-           robo.defineAleatorio();
+           robo.escolheCarta(1);
            um.iniciarJogo(j1,robo);
         }
         else {
@@ -210,7 +225,17 @@ public class Jogo {
             id = Jogo.validaEntrada(resposta);
             Jogador j2 = new Jogador(nome,id);
             System.out.println("Deseja utilizar a seleção de carta aleatória?\n Responda 1 para 'sim' ou 0 para 'não'");
-            Aleatoriedade = resposta.nextInt();
+           indiceValido=false;
+            while(!indiceValido)
+            {
+                Aleatoriedade = Jogo.validaEntrada(resposta);
+                if(Aleatoriedade == 1 || Aleatoriedade ==0)
+               {
+                   indiceValido=true;
+               }else{
+                   System.out.println("Insira somente 1 ou 0");
+               }
+            }
             j2.escolheCarta(Aleatoriedade);
             um.iniciarJogo(j1,j2);
         } 

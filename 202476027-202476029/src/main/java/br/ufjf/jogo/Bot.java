@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package meu.jogo;
+package br.ufjf.jogo;
 
-import Componentes.Carta;
+import br.ufjf.componentes.Carta;
+import br.ufjf.componentes.LeArquivo;
 import java.util.Scanner;
 
 /**
@@ -37,6 +38,7 @@ public class Bot extends Jogador {
                             jogador.mao.remove(a);
                             ataqueJogado+=1;
                             jogador.energia -= a.custo;
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
                             break;
                         }
                         podeJogar = false;
@@ -51,6 +53,7 @@ public class Bot extends Jogador {
                             jogador.jogadas.add(a);
                             jogador.mao.remove(a);
                             jogador.energia -= a.custo;
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
                             break;
                          }
                         podeJogar = false;
@@ -58,13 +61,14 @@ public class Bot extends Jogador {
                 }
                 for(Carta a : jogador.mao)
                 {
-                    if("SUPORTE".equals(a.tipo) && ataqueJogado == 3)
+                    if("SUPORTE".equals(a.tipo) && ataqueJogado >= 2)
                     {
                        if(a.custo <= jogador.energia)
                         {
                             jogador.jogadas.add(a);
                             jogador.mao.remove(a);
                             jogador.energia -= a.custo;
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
                             break;
                          }
                         podeJogar = false;
@@ -84,6 +88,7 @@ public class Bot extends Jogador {
                             jogador.mao.remove(a);
                             ataqueJogado+=1;
                             jogador.energia -= a.custo;
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
                             break;
                          }
                         podeJogar = false;
@@ -99,6 +104,7 @@ public class Bot extends Jogador {
                             jogador.mao.remove(a);
                             defesaJogado+=1;
                             jogador.energia -= a.custo;
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
                             break;
                          }
                         podeJogar = false;
@@ -113,13 +119,14 @@ public class Bot extends Jogador {
                             jogador.jogadas.add(a);
                             jogador.mao.remove(a);
                             jogador.energia -= a.custo;
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
                             break;
                          }
                         podeJogar = false;
                     }
                 }
             }
-            else if(jogador.energia > 5 )
+            else
             {
                 for(Carta a : jogador.mao)
                 {
@@ -130,6 +137,7 @@ public class Bot extends Jogador {
                             jogador.mao.remove(a);
                             defesaJogado+=1;
                             jogador.energia -= a.custo;
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
                             break;
                          }
                         podeJogar = false;
@@ -144,6 +152,7 @@ public class Bot extends Jogador {
                            jogador.mao.remove(a);
                            ataqueJogado+=1;
                            jogador.energia -= a.custo;
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
                            break;
                         }
                         podeJogar = false;
@@ -157,13 +166,12 @@ public class Bot extends Jogador {
                             jogador.jogadas.add(a);
                             jogador.mao.remove(a);
                             jogador.energia -= a.custo;
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
                             break;
                          }
                         podeJogar = false;
                     }
                 }
-            }else{
-                podeJogar = false;
             }
         }
         if(jogador.energia<10)
@@ -172,5 +180,7 @@ public class Bot extends Jogador {
             }
         ataqueJogado = 0;
         defesaJogado =0;
+        LeArquivo.escreveReplay("Jogador " + nome + " terminou seu turno!");
     }    
+  
 }

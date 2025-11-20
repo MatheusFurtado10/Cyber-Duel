@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Componentes;
+package br.ufjf.componentes;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 import java.io.IOException;
 import static java.lang.Float.parseFloat;
@@ -63,5 +65,15 @@ public class LeArquivo {
 
          return deck;
 }
-    
+    public static void escreveReplay(String conteudo)
+    {
+      try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter("Replay.txt",true)))
+      {
+          String linha = conteudo;
+          buffWrite.append(linha + "\n");
+          buffWrite.close();
+      }catch(IOException e){
+          System.out.println("Nao deu pra escrever");
+      }
+    }
 }

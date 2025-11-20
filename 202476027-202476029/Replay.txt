@@ -1,0 +1,5 @@
+Jogador 1 passou a vez
+Jogador cvc passou a vez
+Jogador Bot passou a vez
+Jogador cvc passou a vez
+Jogador cvc rendeu o sistema!

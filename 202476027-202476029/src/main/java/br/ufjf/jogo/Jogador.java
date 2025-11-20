@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package meu.jogo;
+package br.ufjf.jogo;
 
-import Componentes.Carta;
-import Componentes.CartaAtk;
-import Componentes.CartaSup;
-import Componentes.LeArquivo;
+import br.ufjf.componentes.Carta;
+import br.ufjf.componentes.CartaAtk;
+import br.ufjf.componentes.CartaSup;
+import br.ufjf.componentes.LeArquivo;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +99,7 @@ public class Jogador {
         }else{
             this.defineCarta();
         }
+        LeArquivo.escreveReplay("Jogador " + nome + " escolheu suas cartas!");
     }
     public void escolheCartaUI(boolean t) throws IOException
     {
@@ -200,6 +201,7 @@ public class Jogador {
         {
             mao.addAll(maoReserva);
         }
+        LeArquivo.escreveReplay("Jogador " + nome + " teve sua mão reiniciada!");
     }
 
     public void realizarAcao(Jogador jogador, Scanner resposta) {
@@ -232,6 +234,7 @@ public class Jogador {
                   {
                   jogador.energia+=1;
                   }
+                 LeArquivo.escreveReplay("Jogador " + nome + " encerrou seu turno de cartas!");
                   break; // Sai do switch
 
               case 2:
@@ -240,10 +243,12 @@ public class Jogador {
                   {
                   jogador.energia+=1;
                   }                  
+                  LeArquivo.escreveReplay("Jogador " + nome + " passou a vez");
                   break;
               case 3:
                   respondeu=true;
                   jogador.rendeu =true;
+                  LeArquivo.escreveReplay("Jogador " + nome + " rendeu o sistema!");
                   break; 
 
               default:
@@ -258,7 +263,7 @@ public class Jogador {
             j1.reiniciaMao();
             Scanner cartaSelecionada = new Scanner(System.in);
   
-            if(j1.jogadas.size() ==0)
+            if(j1.jogadas.isEmpty())
             {
                    j1.reiniciaMao();
                     System.out.println("------------------------------");
@@ -273,7 +278,6 @@ public class Jogador {
                       int resposta =0;
                     while(!indiceValido)
                     {
-                        try{
                             resposta = Jogo.validaEntrada(cartaSelecionada)-1;
                             if(resposta < j1.mao.size() && resposta>=0)
                             {
@@ -281,14 +285,12 @@ public class Jogador {
                             }else{
                                 System.out.println("Insira um número dentre as cartas");
                             }
-                        }catch(java.util.InputMismatchException e){
-                            System.out.println("Insira um número dentre as cartas");
-                        }
                     }
                     if(j1.mao.get(resposta).custo <= j1.energia){
                         j1.jogadas.add(j1.mao.get(resposta));
                         j1.energia -= j1.mao.get(resposta).custo;
                         System.out.println("Carta jogada");
+                        LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + j1.mao.get(resposta).nome);
                         j1.mao.remove(resposta);
                     }else{
                     System.out.println("Energia insuficiente para jogar esta carta! Escolha outra");
@@ -313,8 +315,7 @@ public class Jogador {
                     System.out.println("Escolha a carta pelo número: ");
                     boolean indiceValido=false;
                     while(!indiceValido)
-                    {
-                        try{
+                        {
                             resposta = Jogo.validaEntrada(cartaSelecionada)-1;
                             if(resposta < j1.mao.size() && resposta>=0)
                             {
@@ -322,14 +323,12 @@ public class Jogador {
                             }else{
                                 System.out.println("Insira um número dentre as cartas");
                             }
-                        }catch(java.util.InputMismatchException e){
-                            System.out.println("Insira um número dentre as cartas");
                         }
-                    }
                     if(j1.mao.get(resposta).custo <= j1.energia){
                         j1.jogadas.add(j1.mao.get(resposta));
                         j1.energia -= j1.mao.get(resposta).custo;
                         System.out.println("Carta jogada");
+                        LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + j1.mao.get(resposta).exibeCarta());
                         j1.mao.remove(resposta);
                         break;
                     }
