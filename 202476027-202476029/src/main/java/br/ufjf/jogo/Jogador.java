@@ -18,10 +18,10 @@ import java.util.Scanner;
  * @author Lucas
  */
 public class Jogador {
-   String nome;
-   int id;
-   int vida =100;
-   int energia = 10;
+    String nome;
+    int id;
+    int vida =100;
+    int energia = 10;
    float ataque=0;
    float defesa=0;
    int nAtk = 0;
@@ -37,6 +37,30 @@ public class Jogador {
         nome= nomeEscolhido;
         id= idEscolhido;
     }
+    
+   public void alteraNome(String nomeEscolhido){
+       this.nome = nomeEscolhido;
+   } 
+   
+   public void setNome(String nomeEscolhido){
+       alteraNome(nomeEscolhido);
+   }
+   
+   public String getNome(){
+       return nome;
+   }
+   
+   public void alteraId(int idEscolhido){
+       this.id = idEscolhido;
+   } 
+   
+   public void setId(int idEscolhido){
+       alteraId(idEscolhido);
+   }
+   
+   public int getId(){
+       return id;
+   }
     
     public static void imprimirLista(List<Carta> cartas, String tipo, int n) 
     {
@@ -209,7 +233,7 @@ public class Jogador {
         for(Carta a : jogador.mao)
             {
                 System.out.print(jogador.mao.indexOf(a)+1 + " - ");
-                a.exibeCarta();
+                System.out.println(a.exibeCarta());
             }
         System.out.println("Escolha a sua ação nesse turno");
         int opcao=0;

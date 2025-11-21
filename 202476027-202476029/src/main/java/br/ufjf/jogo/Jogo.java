@@ -60,7 +60,7 @@ public class Jogo {
         System.out.println("Cartas na mesa:");
         for(Carta a : j1.jogadas)
         {
-            a.exibeCarta();
+            System.out.println(a.exibeCarta());
         }
         System.out.println("\n" + j2.nome.toUpperCase() + "\nID:"+ j2.id + "\nVida: " + j2.vida + "\nEnergia: "+j2.energia);
         System.out.println("---------------------");
@@ -239,8 +239,8 @@ public class Jogo {
             um.iniciarJogo(j1,j2);
         } 
      
-        /*IfGui tela = new IfGui();
+       /* IfGui tela = new IfGui();
         tela.setVisible(true);*/
-    }     
+    }      
 }
 

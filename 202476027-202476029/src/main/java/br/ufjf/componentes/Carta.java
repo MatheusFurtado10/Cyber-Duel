@@ -11,7 +11,7 @@ package br.ufjf.componentes;
  */
   public abstract class Carta  {
     public String nome;
-    public String tipo; // Você pode querer usar um Enum para 'tipo' no futuro
+    public String tipo;
     public float poder;
     public int custo;
     public String descricao;
@@ -27,13 +27,13 @@ package br.ufjf.componentes;
     
     public String exibeCartaSimples()
         {
+            LeArquivo.escreveReplay(this.nome + " Tipo: " + this.tipo +" Poder: " + this.poder + " Custo:" + this.custo);
             return(this.nome + " Tipo: " + this.tipo +" Poder: " + this.poder + " Custo:" + this.custo);
         }
     
     public String exibeCarta()
         {
+            LeArquivo.escreveReplay(this.nome + " Tipo: " + this.tipo +" Poder: " + this.poder + " Custo:" + this.custo);
             return(this.nome + " Tipo: " + this.tipo + " Poder: " + this.poder + " Custo: " + this.custo + " Descricao: " + this.descricao);
-        }
-    
-   
+        } 
 }

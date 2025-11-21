@@ -67,11 +67,10 @@ public class LeArquivo {
 }
     public static void escreveReplay(String conteudo)
     {
-      try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter("Replay.txt",true)))
+      try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter("replay.txt",true)))
       {
           String linha = conteudo;
           buffWrite.append(linha + "\n");
-          buffWrite.close();
       }catch(IOException e){
           System.out.println("Nao deu pra escrever");
       }
