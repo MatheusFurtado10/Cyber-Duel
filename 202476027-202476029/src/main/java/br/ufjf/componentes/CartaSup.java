@@ -15,14 +15,15 @@ public class CartaSup extends Carta {
         super(n, t, p, c, desc);
         this.efeito = f;
     }
+    
     @Override
    public String exibeCartaSimples()
    {
        return(this.nome + " Tipo: " + this.tipo +" Poder: " + this.poder + " Custo:" + this.custo + " Efeito: " + this.efeito);
    }
     @Override
-    public void exibeCarta()
+    public String exibeCarta()
     {
-        System.out.println(this.nome + " Tipo: " + this.tipo + " Poder:" + this.poder + " Custo:" + this.custo + " Efeito: "+this.efeito + " Descrição:" + this.descricao);
+        return(this.nome + " Tipo: " + this.tipo + " Poder:" + this.poder + " Custo:" + this.custo + " Efeito: "+this.efeito + " Descrição:" + this.descricao);
     }
 }
