@@ -4,38 +4,17 @@
 
 package br.ufjf.jogo;
 import br.ufjf.componentes.Carta;
-import br.ufjf.componentes.CartaSup;
 import br.ufjf.componentes.LeArquivo;
-import br.ufjf.tela.IfGui;
-import br.ufjf.tela.IfJogador;
-import java.util.List;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
-import javax.swing.JOptionPane;
 /**
  *
  * @author mathe
  */
 public class Jogo { 
     int rodada=1;
-    public static int validaEntradaUI(int numero, IfJogador a)
-    { int n=1;
-        boolean entradaValida = false;
-        while(!entradaValida)
-        {
-        try {
-             n = numero;
-            entradaValida = true; 
-            
-        } catch (java.util.InputMismatchException e) {
-            JOptionPane.showMessageDialog(a,"Digita certo");
-        }
-        }
-       
-        return n;
-    }
+    
     public static int validaEntrada(Scanner resposta)
     {
         int numero =0;
@@ -56,17 +35,25 @@ public class Jogo {
     }
     public static void exibirEstado(Jogador j1,Jogador j2)
     {
-        System.out.println("\n" + j1.nome.toUpperCase() + "\nID:"+ j1.id + "\nVida: " + j1.vida + "\nEnergia: "+j1.energia);
+        System.out.println("\n" + j1.nome.toUpperCase() + "\nID:"+ j1.id + "\nVida: " + j1.getVida() + "\nEnergia: "+j1.getEnergia());
+        LeArquivo.escreveReplay("\n" + j1.nome.toUpperCase() + "\nID:"+ j1.id + "\nVida: " + j1.getVida() + "\nEnergia: "+j1.getEnergia());
+        
         System.out.println("Cartas na mesa:");
-        for(Carta a : j1.jogadas)
+        for(Carta carta : j1.jogadas)
         {
-            System.out.println(a.exibeCarta());
+            System.out.println(carta.exibeCarta());
         }
-        System.out.println("\n" + j2.nome.toUpperCase() + "\nID:"+ j2.id + "\nVida: " + j2.vida + "\nEnergia: "+j2.energia);
-        System.out.println("---------------------");
+         LeArquivo.escreveReplay("Cartas na mesa:");
+        for(Carta carta : j1.jogadas)
+        {
+            LeArquivo.escreveReplay(carta.exibeCarta());
+        }
+        System.out.println("\n" + j2.nome.toUpperCase() + "\nID:"+ j2.id + "\nVida: " + j2.getVida() + "\nEnergia: "+j2.getEnergia() + "\n---------------------");
+         LeArquivo.escreveReplay("\n" + j2.nome.toUpperCase() + "\nID:"+ j2.id + "\nVida: " + j2.getVida() + "\nEnergia: "+j2.getEnergia() + "\n---------------------");
     }
-     public void iniciarJogo(Jogador j1, Jogador j2) {
-       Random rand = new Random();
+    void iniciarJogo(Jogador j1, Jogador j2) {
+       
+        Random rand = new Random();
         boolean ehTurno = rand.nextBoolean(); // escolhe aleatoriamente quem começa
         boolean jogoAtivo = true;
         Scanner resposta = new Scanner(System.in);
@@ -77,6 +64,7 @@ public class Jogo {
             System.out.println("---------"+rodada+"º RODADA------------");
             LeArquivo.escreveReplay("---------"+rodada+"º RODADA------------");
             System.out.println("\n--- TURNO DE " + jogadorAtual.nome.toUpperCase()+ " ---");
+            LeArquivo.escreveReplay("\n--- TURNO DE " + jogadorAtual.nome.toUpperCase()+ " ---");
             exibirEstado(jogadorAtual,oponente ); 
             
            // Lógica de Ação
@@ -86,6 +74,7 @@ public class Jogo {
                  break;
             }
             System.out.println("\n--- TURNO DE " + oponente.nome.toUpperCase() + " ---");
+             LeArquivo.escreveReplay("\n--- TURNO DE " + oponente.nome.toUpperCase()+ " ---");
             exibirEstado(jogadorAtual,oponente ); 
 
            oponente.realizarAcao(oponente, resposta);
@@ -100,9 +89,9 @@ public class Jogo {
             oponente.jogadas.clear();
             
             // Verificação de Fim de Jogo 
-            if (j1.vida<= 0 || j2.vida <= 0) {
+            if (j1.getVida()<= 0 || j2.getVida() <= 0) {
                 jogoAtivo = false;
-                finalizarJogo(j1.vida <= 0 ? j2 : j1, j1.vida <= 0 ? j1 : j2);
+                finalizarJogo(j1.getVida() <= 0 ? j2 : j1, j1.getVida() <= 0 ? j1 : j2);
             }
             
             // Alterna o turno
@@ -111,13 +100,17 @@ public class Jogo {
         }
     }
      
-     private void finalizarJogo(Jogador vencedor, Jogador perdedor) {
-         LeArquivo.escreveReplay("O jogador "+vencedor.nome + " ganhou de " + perdedor.nome + " com a vida restante de " + vencedor.vida + " pontos!");
-         System.out.println("O jogador "+vencedor.nome + " ganhou de " + perdedor.nome + " com a vida restante de " + vencedor.vida + " pontos!");
+    void finalizarJogo(Jogador vencedor, Jogador perdedor) {
+         LeArquivo.escreveReplay("O jogador "+vencedor.nome + " ganhou de " + perdedor.nome + " com a vida restante de " + vencedor.getVida() + " pontos!");
+         System.out.println("O jogador "+vencedor.nome + " ganhou de " + perdedor.nome + " com a vida restante de " + vencedor.getVida() + " pontos!");
+         System.out.println("O replay da partida pode ser encontrado em 'Replay.txt'. Atenção, o arquivo é sobreescrito ao iniciar um novo jogo, se for do interesse,"
+         + " copie para outro arquivo de sua preferência!");
+         LeArquivo.escreveReplay("Jogo finalizado!");
     }
 
     public void calculaConfronto(Jogador jogadorAtual, Jogador oponente) 
     {
+        
         jogadorAtual.calculaCartas(jogadorAtual);
         oponente.calculaCartas(oponente);
         jogadorAtual.calculaSuportes(jogadorAtual, oponente);
@@ -139,15 +132,15 @@ public class Jogo {
         LeArquivo.escreveReplay("---------------------------------------------------------------");
         
         // Aplica o Dano à Vida
-        oponente.vida = (int) (Math.round((oponente.vida - danoAoOponente)/ 10.0) * 10 );
-        jogadorAtual.vida = (int) (Math.round((jogadorAtual.vida - danoAoJogador)/ 10.0 ) * 10);
-        if(jogadorAtual.vida > 100)
+        oponente.setVida((int) (Math.round((oponente.getVida() - danoAoOponente)/ 10.0) * 10 ));
+        jogadorAtual.setVida((int) (Math.round((jogadorAtual.getVida() - danoAoJogador)/ 10.0 ) * 10));
+        if(jogadorAtual.getVida() > 100)
         {
-            jogadorAtual.vida = 100;
+            jogadorAtual.setVida(100);
         }
-        if(oponente.vida > 100)
+        if(oponente.getVida() > 100)
         {
-            oponente.vida = 100;
+            oponente.setVida(100);
         }
         oponente.defesa =0 ;
         oponente.ataque = 0;
@@ -159,7 +152,7 @@ public class Jogo {
     
     public static void main(String[] args) throws IOException 
     {
-        
+        LeArquivo.comecaReplay("Jogo iniciado!");
         Jogo um = new Jogo(); 
         int numeroJogadores =1;
         int Aleatoriedade = 1;
@@ -210,10 +203,10 @@ public class Jogo {
            }
         }
         
-        j1.escolheCarta(Aleatoriedade);
+        j1.escolheSelecao(Aleatoriedade);
         if(numeroJogadores == 1){
            Bot robo = new Bot();
-           robo.escolheCarta(1);
+           robo.escolheSelecao(1);
            um.iniciarJogo(j1,robo);
         }
         else {
@@ -235,12 +228,10 @@ public class Jogo {
                    System.out.println("Insira somente 1 ou 0");
                }
             }
-            j2.escolheCarta(Aleatoriedade);
+            j2.escolheSelecao(Aleatoriedade);
+            
             um.iniciarJogo(j1,j2);
         } 
-     
-       /* IfGui tela = new IfGui();
-        tela.setVisible(true);*/
     }      
 }
 

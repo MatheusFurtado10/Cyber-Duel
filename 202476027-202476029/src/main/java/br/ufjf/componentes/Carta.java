@@ -4,6 +4,8 @@
  */
 package br.ufjf.componentes;
 
+import java.util.List;
+
 
 /**
  *
@@ -27,13 +29,34 @@ package br.ufjf.componentes;
     
     public String exibeCartaSimples()
         {
-            LeArquivo.escreveReplay(this.nome + " Tipo: " + this.tipo +" Poder: " + this.poder + " Custo:" + this.custo);
+          
             return(this.nome + " Tipo: " + this.tipo +" Poder: " + this.poder + " Custo:" + this.custo);
         }
     
     public String exibeCarta()
         {
-            LeArquivo.escreveReplay(this.nome + " Tipo: " + this.tipo +" Poder: " + this.poder + " Custo:" + this.custo);
+           
             return(this.nome + " Tipo: " + this.tipo + " Poder: " + this.poder + " Custo: " + this.custo + " Descricao: " + this.descricao);
         } 
+    
+    public static void imprimirLista(List<Carta> cartas, String tipo, int n) 
+    {
+        System.out.println("Escolha suas "+n+" cartas de "+tipo+" para sua mao de jogo:");
+        System.out.println("--------------------------------------------------------------------------------------------");
+        int totalCartas = cartas.size();
+        if (totalCartas == 0) return; 
+        int meio = (int) Math.ceil(totalCartas / 2.0);
+        String formato = "%-110s"; 
+        for (int i = 0; i < meio; i++) {
+            Carta cartaEsquerda = cartas.get(i);
+            System.out.print(String.format(formato, (i + 1) + " - " + cartaEsquerda.exibeCartaSimples()));
+            int indiceDireita = i + meio;
+            if (indiceDireita < totalCartas) {
+                Carta cartaDireita = cartas.get(indiceDireita);
+                System.out.println((indiceDireita + 1) + " - " + cartaDireita.exibeCartaSimples());
+            } else {
+                System.out.println();
+            }
+        }
+    }
 }

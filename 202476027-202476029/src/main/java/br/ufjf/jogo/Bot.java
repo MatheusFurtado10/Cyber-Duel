@@ -23,160 +23,155 @@ public class Bot extends Jogador {
     public void realizarAcao(Jogador jogador, Scanner resposta)
     {
         boolean podeJogar = true;
-        while(jogador.energia>3 && podeJogar)
+        while(jogador.getEnergia()>3 && podeJogar)
         {
             jogador.reiniciaMao();
-            if(jogador.vida > 70)
+            if(jogador.getVida() > 70)
             {
-                for(Carta a : jogador.mao)
+                for(Carta jogada : jogador.mao)
                 {
-                    if("ATAQUE".equals(a.tipo) && ataqueJogado<2)
+                    if("ATAQUE".equals(jogada.tipo) && ataqueJogado<2)
                     {
-                        if(a.custo <= jogador.energia - ataqueJogado)
-                        {
-                            jogador.jogadas.add(a);
-                            jogador.mao.remove(a);
-                            ataqueJogado+=1;
-                            jogador.energia -= a.custo;
-                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
-                            break;
+                          if(jogada.custo <= jogador.getEnergia()){
+                           jogador.jogadas.add(jogada);
+                           jogador.mao.remove(jogada);
+                           ataqueJogado+=1;
+                          jogador.alteraEnergia(-jogada.custo);
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                           break;
                         }
                         podeJogar = false;
                     }
                 }
-                for(Carta a : jogador.mao)
+                for(Carta jogada : jogador.mao)
                 {
-                    if("DEFESA".equals(a.tipo) && defesaJogado < 1 )
+                    if("DEFESA".equals(jogada.tipo) && defesaJogado < 1 )
                     {
-                       if(a.custo <= jogador.energia-2)
-                        {
-                            jogador.jogadas.add(a);
-                            jogador.mao.remove(a);
-                            jogador.energia -= a.custo;
-                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
-                            break;
-                         }
+                       if(jogada.custo <= jogador.getEnergia()){
+                           jogador.jogadas.add(jogada);
+                           jogador.mao.remove(jogada);
+                           defesaJogado+=1;
+                          jogador.alteraEnergia(-jogada.custo);
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                           break;
+                        }
                         podeJogar = false;
                     }
                 }
-                for(Carta a : jogador.mao)
+                for(Carta jogada : jogador.mao)
                 {
-                    if("SUPORTE".equals(a.tipo) && ataqueJogado >= 2)
+                    if("SUPORTE".equals(jogada.tipo) && ataqueJogado >= 2)
                     {
-                       if(a.custo <= jogador.energia)
-                        {
-                            jogador.jogadas.add(a);
-                            jogador.mao.remove(a);
-                            jogador.energia -= a.custo;
-                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
-                            break;
-                         }
+                        if(jogada.custo <= jogador.getEnergia()){
+                           jogador.jogadas.add(jogada);
+                           jogador.mao.remove(jogada);
+                           jogador.alteraEnergia(-jogada.custo);
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                           break;
+                        }
                         podeJogar = false;
                     }
                 }
                     
             }
-            else if(jogador.vida > 30 && jogador.vida < 70)
+            else if(jogador.getVida() > 30 && jogador.getVida() < 70)
             {
-                for(Carta a : jogador.mao)
+                for(Carta jogada : jogador.mao)
                 {
-                    if("ATAQUE".equals(a.tipo) && ataqueJogado < 1)
+                    if("ATAQUE".equals(jogada.tipo) && ataqueJogado < 1)
                     {
-                        if(a.custo <= jogador.energia)
-                        {
-                            jogador.jogadas.add(a);
-                            jogador.mao.remove(a);
-                            ataqueJogado+=1;
-                            jogador.energia -= a.custo;
-                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
-                            break;
-                         }
+                          if(jogada.custo <= jogador.getEnergia()){
+                           jogador.jogadas.add(jogada);
+                           jogador.mao.remove(jogada);
+                           ataqueJogado+=1;
+                           jogador.alteraEnergia(-jogada.custo);
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                           break;
+                        }
                         podeJogar = false;
                     }
                 }
-                 for(Carta a : jogador.mao)
+                 for(Carta jogada : jogador.mao)
                 {
-                    if("DEFESA".equals(a.tipo) && defesaJogado < 2)
+                    if("DEFESA".equals(jogada.tipo) && defesaJogado < 2)
                     {
-                       if(a.custo <= jogador.energia)
-                        {
-                            jogador.jogadas.add(a);
-                            jogador.mao.remove(a);
-                            defesaJogado+=1;
-                            jogador.energia -= a.custo;
-                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
-                            break;
-                         }
+                         if(jogada.custo <= jogador.getEnergia()){
+                           jogador.jogadas.add(jogada);
+                           jogador.mao.remove(jogada);
+                           defesaJogado+=1;
+                           jogador.alteraEnergia(-jogada.custo);
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                           break;
+                        }
                         podeJogar = false;
                     }
                 }
-                 for(Carta a : jogador.mao)
+                 for(Carta jogada : jogador.mao)
                 {
-                    if("SUPORTE".equals(a.tipo))
+                    if("SUPORTE".equals(jogada.tipo))
                     {
-                       if(a.custo <= jogador.energia)
-                        {
-                            jogador.jogadas.add(a);
-                            jogador.mao.remove(a);
-                            jogador.energia -= a.custo;
-                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
-                            break;
-                         }
+                        if(jogada.custo <= jogador.getEnergia()){
+                           jogador.jogadas.add(jogada);
+                           jogador.mao.remove(jogada);
+                          jogador.alteraEnergia(-jogada.custo);
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                           break;
+                        }
                         podeJogar = false;
                     }
                 }
             }
             else
             {
-                for(Carta a : jogador.mao)
+                for(Carta jogada : jogador.mao)
                 {
-                    if("DEFESA".equals(a.tipo) && defesaJogado<1)
+                    if("DEFESA".equals(jogada.tipo) && defesaJogado<1)
                     {
-                        if(a.custo <= jogador.energia){
-                            jogador.jogadas.add(a);
-                            jogador.mao.remove(a);
-                            defesaJogado+=1;
-                            jogador.energia -= a.custo;
-                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
-                            break;
-                         }
-                        podeJogar = false;
-                    }
-                }
-                for(Carta a : jogador.mao)
-                {   
-                    if("ATAQUE".equals(a.tipo) && ataqueJogado<1)
-                    {
-                        if(a.custo <= jogador.energia){
-                           jogador.jogadas.add(a);
-                           jogador.mao.remove(a);
-                           ataqueJogado+=1;
-                           jogador.energia -= a.custo;
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
+                          if(jogada.custo <= jogador.getEnergia()){
+                           jogador.jogadas.add(jogada);
+                           jogador.mao.remove(jogada);
+                           defesaJogado+=1;
+                           jogador.alteraEnergia(-jogada.custo);
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
                            break;
                         }
                         podeJogar = false;
                     }
                 }
-                 for(Carta a : jogador.mao)
+                for(Carta jogada : jogador.mao)
                 {   
-                    if("SUPORTE".equals(a.tipo))
+                    if("ATAQUE".equals(jogada.tipo) && ataqueJogado<1)
                     {
-                        if(a.custo <= jogador.energia){
-                            jogador.jogadas.add(a);
-                            jogador.mao.remove(a);
-                            jogador.energia -= a.custo;
-                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + a.nome);
-                            break;
-                         }
+                        if(jogada.custo <= jogador.getEnergia()){
+                           jogador.jogadas.add(jogada);
+                           jogador.mao.remove(jogada);
+                           ataqueJogado+=1;
+                          jogador.alteraEnergia(-jogada.custo);
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                           break;
+                        }
+                        podeJogar = false;
+                    }
+                }
+                 for(Carta jogada : jogador.mao)
+                {   
+                    if("SUPORTE".equals(jogada.tipo))
+                    {
+                       if(jogada.custo <= jogador.getEnergia()){
+                           jogador.jogadas.add(jogada);
+                           jogador.mao.remove(jogada);
+                           jogador.alteraEnergia(-jogada.custo);
+                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                           break;
+                        }
                         podeJogar = false;
                     }
                 }
             }
         }
-        if(jogador.energia<10)
+        if(jogador.getEnergia()<10)
             {
-                jogador.energia += 1;
+                jogador.alteraEnergia(1);
             }
         ataqueJogado = 0;
         defesaJogado =0;

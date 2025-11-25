@@ -1,0 +1,667 @@
+Jogo iniciado!
+Jogador Luca escolheu suas cartas!
+Jogador Bot escolheu suas cartas!
+---------1º RODADA------------
+
+LUCA
+ID:123123
+Vida: 100
+Energia: 10
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 100
+Energia: 10
+---------------------
+Jogador Luca jogou a carta: ZeroLatency Strike Tipo: ATAQUE Poder: 50.0 Custo: 5 Descricao: Ofensiva instantânea sem possibilidade de reação
+Jogador Luca encerrou seu turno de cartas!
+
+LUCA
+ID:123123
+Vida: 100
+Energia: 6
+Cartas na mesa:
+ZeroLatency Strike Tipo: ATAQUE Poder: 50.0 Custo: 5 Descricao: Ofensiva instantânea sem possibilidade de reação
+
+BOT
+ID:202567001
+Vida: 100
+Energia: 10
+---------------------
+Jogador Bot jogou a carta: Ataque de Script Tipo: ATAQUE Poder: 20.0 Custo: 2 Descricao: Executa scripts automatizados com efeitos maliciosos
+Jogador Bot jogou a carta: Proteção de Núcleo Tipo: DEFESA Poder: 50.0 Custo: 5 Descricao: Isola e protege subsistemas críticos do sistema
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 1º Rodada!
+LUCA Possuia 50.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 20.0 de Ataque e 50.0 de Defesa!
+Resultando em LUCA receber 20 de dano enquanto BOT recebeu 0 de dano!
+---------------------------------------------------------------
+---------2º RODADA------------
+
+BOT
+ID:202567001
+Vida: 100
+Energia: 4
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 6
+---------------------
+Jogador Bot jogou a carta: Packet Sniffer Tipo: ATAQUE Poder: 10.0 Custo: 1 Descricao: Captura pacotes para coleta de inteligência de rede
+Jogador Bot jogou a carta: Modo Seguro Tipo: DEFESA Poder: 10.0 Custo: 1 Descricao: Desativa módulos não essenciais para operação minimizada
+Jogador Bot terminou seu turno!
+
+BOT
+ID:202567001
+Vida: 100
+Energia: 3
+Cartas na mesa:
+Packet Sniffer Tipo: ATAQUE Poder: 10.0 Custo: 1 Descricao: Captura pacotes para coleta de inteligência de rede
+Modo Seguro Tipo: DEFESA Poder: 10.0 Custo: 1 Descricao: Desativa módulos não essenciais para operação minimizada
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 6
+---------------------
+Jogador Luca jogou a carta: ForcaBruta Paralela Tipo: ATAQUE Poder: 30.0 Custo: 3 Descricao: Divide processamento para quebrar senhas mais rápido
+Jogador Luca jogou a carta: Bloqueio de Script Tipo: DEFESA Poder: 10.0 Custo: 1 Descricao: Impede execução automática de scripts desconhecidos
+Jogador Luca encerrou seu turno de cartas!
+---------------------------------------------------------------
+Resultado da 2º Rodada!
+BOT Possuia 10.0 de Ataque e 10.0 de Defesa!
+LUCA Possuia 30.0 de Ataque e 10.0 de Defesa!
+Resultando em BOT receber 20 de dano enquanto LUCA recebeu 0 de dano!
+---------------------------------------------------------------
+---------3º RODADA------------
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 3
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 80
+Energia: 3
+---------------------
+Jogador Luca passou a vez
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 4
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 80
+Energia: 3
+---------------------
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 3º Rodada!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em LUCA receber 0 de dano enquanto BOT recebeu 0 de dano!
+---------------------------------------------------------------
+---------4º RODADA------------
+
+BOT
+ID:202567001
+Vida: 80
+Energia: 4
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 4
+---------------------
+Jogador Bot jogou a carta: Bloqueio de Comportamento Automatizado Tipo: DEFESA Poder: 40.0 Custo: 4 Descricao: Bloqueia execuções automáticas consideradas suspeitas
+Jogador Bot terminou seu turno!
+
+BOT
+ID:202567001
+Vida: 80
+Energia: 1
+Cartas na mesa:
+Bloqueio de Comportamento Automatizado Tipo: DEFESA Poder: 40.0 Custo: 4 Descricao: Bloqueia execuções automáticas consideradas suspeitas
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 4
+---------------------
+Jogador Luca passou a vez
+---------------------------------------------------------------
+Resultado da 4º Rodada!
+BOT Possuia 0.0 de Ataque e 40.0 de Defesa!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em BOT receber 0 de dano enquanto LUCA recebeu 0 de dano!
+---------------------------------------------------------------
+---------5º RODADA------------
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 5
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 80
+Energia: 1
+---------------------
+Jogador Luca jogou a carta: Cryptojacking Local Tipo: ATAQUE Poder: 30.0 Custo: 3 Descricao: Minera criptomoedas usando CPU do alvo
+Jogador Luca jogou a carta: Ping de Teste Tipo: ATAQUE Poder: 10.0 Custo: 1 Descricao: Verifica latência e responde para sondagem do alvo
+Jogador Luca encerrou seu turno de cartas!
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 2
+Cartas na mesa:
+Cryptojacking Local Tipo: ATAQUE Poder: 30.0 Custo: 3 Descricao: Minera criptomoedas usando CPU do alvo
+Ping de Teste Tipo: ATAQUE Poder: 10.0 Custo: 1 Descricao: Verifica latência e responde para sondagem do alvo
+
+BOT
+ID:202567001
+Vida: 80
+Energia: 1
+---------------------
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 5º Rodada!
+LUCA Possuia 40.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em LUCA receber 0 de dano enquanto BOT recebeu 40 de dano!
+---------------------------------------------------------------
+---------6º RODADA------------
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 2
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 2
+---------------------
+Jogador Bot terminou seu turno!
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 3
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 2
+---------------------
+Jogador Luca passou a vez
+---------------------------------------------------------------
+Resultado da 6º Rodada!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em BOT receber 0 de dano enquanto LUCA recebeu 0 de dano!
+---------------------------------------------------------------
+---------7º RODADA------------
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 3
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 3
+---------------------
+Jogador Luca passou a vez
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 4
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 3
+---------------------
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 7º Rodada!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em LUCA receber 0 de dano enquanto BOT recebeu 0 de dano!
+---------------------------------------------------------------
+---------8º RODADA------------
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 4
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 4
+---------------------
+Jogador Bot jogou a carta: Bloqueio de Porta Temporário Tipo: DEFESA Poder: 20.0 Custo: 2 Descricao: Fecha portas vulneráveis para reduzir superfície de ataque
+Jogador Bot jogou a carta: Ataque Inteligente Tipo: SUPORTE Poder:0.2 Custo:2 Efeito: AUMENTA_ATAQUE Descrição:Melhora o poder ofensivo em 20%.
+Jogador Bot terminou seu turno!
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 1
+Cartas na mesa:
+Bloqueio de Porta Temporário Tipo: DEFESA Poder: 20.0 Custo: 2 Descricao: Fecha portas vulneráveis para reduzir superfície de ataque
+Ataque Inteligente Tipo: SUPORTE Poder:0.2 Custo:2 Efeito: AUMENTA_ATAQUE Descrição:Melhora o poder ofensivo em 20%.
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 4
+---------------------
+Jogador Luca passou a vez
+A carta   do jogador Bot teve seu ataque aumentado em 0.2 resultando em 0.0
+---------------------------------------------------------------
+Resultado da 8º Rodada!
+BOT Possuia 0.0 de Ataque e 20.0 de Defesa!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em BOT receber 0 de dano enquanto LUCA recebeu 0 de dano!
+---------------------------------------------------------------
+---------9º RODADA------------
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 5
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 1
+---------------------
+Jogador Luca passou a vez
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 6
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 1
+---------------------
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 9º Rodada!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em LUCA receber 0 de dano enquanto BOT recebeu 0 de dano!
+---------------------------------------------------------------
+---------10º RODADA------------
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 2
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 6
+---------------------
+Jogador Bot terminou seu turno!
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 3
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 6
+---------------------
+Jogador Luca jogou a carta: Proxy Inteligente Tipo: DEFESA Poder: 40.0 Custo: 4 Descricao: Redireciona e inspeciona tráfego suspeito antes de chegar ao alvo
+Jogador Luca jogou a carta: Overclock de CPU Tipo: SUPORTE Poder:0.2 Custo:2 Efeito: AUMENTA_ATAQUE Descrição:Aumenta a potência dos ataques em 20%.
+Jogador Luca encerrou seu turno de cartas!
+A carta   do jogador Luca teve seu ataque aumentado em 0.2 resultando em 0.0
+---------------------------------------------------------------
+Resultado da 10º Rodada!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+LUCA Possuia 0.0 de Ataque e 40.0 de Defesa!
+Resultando em BOT receber 0 de dano enquanto LUCA recebeu 0 de dano!
+---------------------------------------------------------------
+---------11º RODADA------------
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 1
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 3
+---------------------
+Jogador Luca passou a vez
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 2
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 3
+---------------------
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 11º Rodada!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em LUCA receber 0 de dano enquanto BOT recebeu 0 de dano!
+---------------------------------------------------------------
+---------12º RODADA------------
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 4
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 2
+---------------------
+Jogador Bot jogou a carta: Honeypot Avançado Tipo: SUPORTE Poder:0.1 Custo:1 Efeito: DIMINUI_ATAQUE Descrição:Engana o oponente e reduz seu ataque em 10%.
+Jogador Bot terminou seu turno!
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 4
+Cartas na mesa:
+Honeypot Avançado Tipo: SUPORTE Poder:0.1 Custo:1 Efeito: DIMINUI_ATAQUE Descrição:Engana o oponente e reduz seu ataque em 10%.
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 2
+---------------------
+Jogador Luca passou a vez
+O jogador Luca teve seu ataque reduzido em 0.1 resultando em 0.0
+---------------------------------------------------------------
+Resultado da 12º Rodada!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em BOT receber 0 de dano enquanto LUCA recebeu 0 de dano!
+---------------------------------------------------------------
+---------13º RODADA------------
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 3
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 4
+---------------------
+Jogador Luca passou a vez
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 4
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 4
+---------------------
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 13º Rodada!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em LUCA receber 0 de dano enquanto BOT recebeu 0 de dano!
+---------------------------------------------------------------
+---------14º RODADA------------
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 5
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 4
+---------------------
+Jogador Bot jogou a carta: Força Quântica Tipo: ATAQUE Poder: 50.0 Custo: 5 Descricao: Processamento quântico para ultrapassar defesas
+Jogador Bot terminou seu turno!
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 1
+Cartas na mesa:
+Força Quântica Tipo: ATAQUE Poder: 50.0 Custo: 5 Descricao: Processamento quântico para ultrapassar defesas
+
+LUCA
+ID:123123
+Vida: 80
+Energia: 4
+---------------------
+Jogador Luca passou a vez
+---------------------------------------------------------------
+Resultado da 14º Rodada!
+BOT Possuia 50.0 de Ataque e 0.0 de Defesa!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em BOT receber 0 de dano enquanto LUCA recebeu 50 de dano!
+---------------------------------------------------------------
+---------15º RODADA------------
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 5
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 1
+---------------------
+Jogador Luca passou a vez
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 6
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 1
+---------------------
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 15º Rodada!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em LUCA receber 0 de dano enquanto BOT recebeu 0 de dano!
+---------------------------------------------------------------
+---------16º RODADA------------
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 2
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 6
+---------------------
+Jogador Bot terminou seu turno!
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 3
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 6
+---------------------
+Jogador Luca passou a vez
+---------------------------------------------------------------
+Resultado da 16º Rodada!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em BOT receber 0 de dano enquanto LUCA recebeu 0 de dano!
+---------------------------------------------------------------
+---------17º RODADA------------
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 7
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 3
+---------------------
+Jogador Luca passou a vez
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 8
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 3
+---------------------
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 17º Rodada!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+Resultando em LUCA receber 0 de dano enquanto BOT recebeu 0 de dano!
+---------------------------------------------------------------
+---------18º RODADA------------
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 4
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 8
+---------------------
+Jogador Bot terminou seu turno!
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 5
+Cartas na mesa:
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 8
+---------------------
+Jogador Luca jogou a carta: Autenticação Multifator Avançada Tipo: DEFESA Poder: 40.0 Custo: 4 Descricao: Exige múltiplas camadas de verificação para operações criticas
+Jogador Luca jogou a carta: Quarentena de Arquivo Tipo: DEFESA Poder: 10.0 Custo: 1 Descricao: Move arquivos suspeitos para área isolada para análise
+Jogador Luca jogou a carta: IA Estratégica Tipo: SUPORTE Poder:0.2 Custo:2 Efeito: AUMENTA_ATAQUE Descrição:Usa algoritmos para prever defesas e atacar com 20% mais força.
+Jogador Luca teve sua mão reiniciada!
+Jogador Luca encerrou seu turno de cartas!
+A carta   do jogador Luca teve seu ataque aumentado em 0.2 resultando em 0.0
+---------------------------------------------------------------
+Resultado da 18º Rodada!
+BOT Possuia 0.0 de Ataque e 0.0 de Defesa!
+LUCA Possuia 0.0 de Ataque e 50.0 de Defesa!
+Resultando em BOT receber 0 de dano enquanto LUCA recebeu 0 de dano!
+---------------------------------------------------------------
+---------19º RODADA------------
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 2
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 5
+---------------------
+Jogador Luca passou a vez
+
+LUCA
+ID:123123
+Vida: 30
+Energia: 3
+Cartas na mesa:
+
+BOT
+ID:202567001
+Vida: 40
+Energia: 5
+---------------------
+Jogador Bot jogou a carta: Botnet Massiva Tipo: ATAQUE Poder: 50.0 Custo: 5 Descricao: Milhares de dispositivos zumbificados atacam
+Jogador Bot terminou seu turno!
+---------------------------------------------------------------
+Resultado da 19º Rodada!
+LUCA Possuia 0.0 de Ataque e 0.0 de Defesa!
+BOT Possuia 50.0 de Ataque e 0.0 de Defesa!
+Resultando em LUCA receber 50 de dano enquanto BOT recebeu 0 de dano!
+---------------------------------------------------------------
+O jogador Bot ganhou de Luca com a vida restante de 40 pontos!
+Jogo finalizado!
