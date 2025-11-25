@@ -47,3 +47,47 @@ Restauro de Versão Tipo: DEFESA Poder: 20.0 Custo:2
 Quarentena de Arquivo Tipo: DEFESA Poder: 10.0 Custo:1
 Jogador 1 rendeu o sistema!
 O jogador Bot ganhou de 1 com a vida restante de 80 pontos!
+Jogador fj escolheu suas cartas!
+Jogador Bot escolheu suas cartas!
+---------1º RODADA------------
+ZeroLatency Strike Tipo: ATAQUE Poder: 50.0 Custo:5
+Script Kiddie Tool Tipo: ATAQUE Poder: 10.0 Custo:1
+CrossSite Scripting Tipo: ATAQUE Poder: 30.0 Custo:3
+Ataque de Script Tipo: ATAQUE Poder: 20.0 Custo:2
+Verificação de Certificados Tipo: DEFESA Poder: 20.0 Custo:2
+Proteção de Porta Tipo: DEFESA Poder: 10.0 Custo:1
+Reforço de Permissões Tipo: DEFESA Poder: 20.0 Custo:2
+Isolamento de Usuário Tipo: DEFESA Poder: 20.0 Custo:2
+Jogador fj teve sua mão reiniciada!
+Jogador fj teve sua mão reiniciada!
+ZeroLatency Strike Tipo: ATAQUE Poder: 50.0 Custo:5
+Script Kiddie Tool Tipo: ATAQUE Poder: 10.0 Custo:1
+CrossSite Scripting Tipo: ATAQUE Poder: 30.0 Custo:3
+Ataque de Script Tipo: ATAQUE Poder: 20.0 Custo:2
+Verificação de Certificados Tipo: DEFESA Poder: 20.0 Custo:2
+Proteção de Porta Tipo: DEFESA Poder: 10.0 Custo:1
+Reforço de Permissões Tipo: DEFESA Poder: 20.0 Custo:2
+Isolamento de Usuário Tipo: DEFESA Poder: 20.0 Custo:2
+Jogador fj jogou a carta: Ataque de Script
+Jogador fj teve sua mão reiniciada!
+Jogador fj teve sua mão reiniciada!
+ZeroLatency Strike Tipo: ATAQUE Poder: 50.0 Custo:5
+Script Kiddie Tool Tipo: ATAQUE Poder: 10.0 Custo:1
+CrossSite Scripting Tipo: ATAQUE Poder: 30.0 Custo:3
+Verificação de Certificados Tipo: DEFESA Poder: 20.0 Custo:2
+Proteção de Porta Tipo: DEFESA Poder: 10.0 Custo:1
+Reforço de Permissões Tipo: DEFESA Poder: 20.0 Custo:2
+Isolamento de Usuário Tipo: DEFESA Poder: 20.0 Custo:2
+Proteção de Porta Tipo: DEFESA Poder: 10.0 Custo:1
+Jogador fj jogou a carta: Proteção de Porta Tipo: DEFESA Poder: 10.0 Custo: 1 Descricao: Fecha portas não utilizadas automaticamente
+Jogador fj teve sua mão reiniciada!
+Jogador fj teve sua mão reiniciada!
+ZeroLatency Strike Tipo: ATAQUE Poder: 50.0 Custo:5
+Script Kiddie Tool Tipo: ATAQUE Poder: 10.0 Custo:1
+CrossSite Scripting Tipo: ATAQUE Poder: 30.0 Custo:3
+Verificação de Certificados Tipo: DEFESA Poder: 20.0 Custo:2
+Reforço de Permissões Tipo: DEFESA Poder: 20.0 Custo:2
+Isolamento de Usuário Tipo: DEFESA Poder: 20.0 Custo:2
+CrossSite Scripting Tipo: ATAQUE Poder: 30.0 Custo:3
+Jogador fj jogou a carta: CrossSite Scripting Tipo: ATAQUE Poder: 30.0 Custo: 3 Descricao: Injeta scripts maliciosos em páginas confiáveis
+Jogador fj teve sua mão reiniciada!
