@@ -8,7 +8,6 @@ import br.ufjf.componentes.Carta;
 import br.ufjf.componentes.CartaAtk;
 import br.ufjf.componentes.CartaSup;
 import br.ufjf.componentes.LeArquivo;
-import br.ufjf.jogo.Jogo;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -197,16 +196,13 @@ public class Jogador {
         boolean respondeu = false;
         while (!respondeu) 
         {
-          // Exibe as opções do menu
           System.out.println("\n--- Menu ---");
           System.out.println("1. Jogar Cartas");
           System.out.println("2. Passar a vez");
           System.out.println("3. Entregar o Sistema");
           System.out.print("Escolha uma opção: \n");
 
-          
           opcao = Jogo.validaEntrada(resposta);
-
           
           switch (opcao) 
             {
@@ -216,8 +212,7 @@ public class Jogador {
                   respondeu = true;
                   LeArquivo.escreveReplay("Jogador " + nome + " encerrou seu turno de cartas!");
                   break;
-                } 
-
+                }
               case 2 -> {
                   respondeu=true;
                   LeArquivo.escreveReplay("Jogador " + nome + " passou a vez");
@@ -228,8 +223,7 @@ public class Jogador {
                   jogador.rendeu =true;
                   LeArquivo.escreveReplay("Jogador " + nome + " rendeu o sistema!");
                   break;
-                } 
-
+                }
               default -> System.out.println("Opção inválida. Tente novamente.");
             }
         }
@@ -251,25 +245,28 @@ public class Jogador {
                     int resposta =0;
                     while(!indiceValido)
                     {
-                            resposta = Jogo.validaEntrada(cartaSelecionada)-1;
-                            if(resposta < jogador.mao.size() && resposta>=-1)
-                            {
-                                indiceValido=true;
-                            }else{
-                                System.out.println("Insira um número dentre as cartas");
-                            }
+                        resposta = Jogo.validaEntrada(cartaSelecionada)-1;
+                        if(resposta < jogador.mao.size() && resposta>=-1)
+                        {
+                            indiceValido=true;
+                        }else{
+                            System.out.println("Insira um número dentre as cartas");
+                        }
                     }
                     if(resposta == -1){
                         jogador.realizarAcao(jogador, cartaSelecionada);
-                       podeJogar = false;
+                        podeJogar = false;
                     }
-                    else if(jogador.mao.get(resposta).custo <= jogador.energia){
+                    else if(jogador.mao.get(resposta).custo <= jogador.energia)
+                    {
                         jogador.jogadas.add(jogador.mao.get(resposta));
-                         jogador.alteraEnergia(-jogador.mao.get(resposta).custo);
+                        jogador.alteraEnergia(-jogador.mao.get(resposta).custo);
                         System.out.println("Carta jogada");
                         LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogador.mao.get(resposta).exibeCarta());
                         jogador.mao.remove(resposta);
-                    }else{
+                    }
+                    else
+                    {
                     System.out.println("Energia insuficiente para jogar esta carta! Escolha outra");
                     }
             }else if(jogador.getEnergia() > 0)
@@ -297,7 +294,9 @@ public class Jogador {
                                 if(resposta < jogador.mao.size() && resposta>=-1)
                                 {
                                     indiceValido=true;
-                                }else{
+                                }
+                                else
+                                {
                                     System.out.println("Insira um número dentre as cartas");
                                 }
                             }
@@ -310,7 +309,8 @@ public class Jogador {
                             System.out.println("Carta jogada");
                             LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogador.mao.get(resposta).exibeCarta());
                             jogador.mao.remove(resposta);
-                        }else
+                        }
+                        else
                         {
                             System.out.println("Energia insuficiente para jogar esta carta! Escolha outra");
                         }

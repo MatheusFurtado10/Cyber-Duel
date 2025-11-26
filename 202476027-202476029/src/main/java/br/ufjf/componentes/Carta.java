@@ -29,13 +29,11 @@ import java.util.List;
     
     public String exibeCartaSimples()
         {
-          
             return(this.nome + " Tipo: " + this.tipo +" Poder: " + this.poder + " Custo:" + this.custo);
         }
     
     public String exibeCarta()
         {
-           
             return(this.nome + " Tipo: " + this.tipo + " Poder: " + this.poder + " Custo: " + this.custo + " Descricao: " + this.descricao);
         } 
     
@@ -51,10 +49,13 @@ import java.util.List;
             Carta cartaEsquerda = cartas.get(i);
             System.out.print(String.format(formato, (i + 1) + " - " + cartaEsquerda.exibeCartaSimples()));
             int indiceDireita = i + meio;
-            if (indiceDireita < totalCartas) {
+            if(indiceDireita < totalCartas)
+            {
                 Carta cartaDireita = cartas.get(indiceDireita);
                 System.out.println((indiceDireita + 1) + " - " + cartaDireita.exibeCartaSimples());
-            } else {
+            } 
+            else 
+            {
                 System.out.println();
             }
         }

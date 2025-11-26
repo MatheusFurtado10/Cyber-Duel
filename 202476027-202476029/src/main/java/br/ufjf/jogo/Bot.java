@@ -18,7 +18,8 @@ public class Bot extends Jogador {
     public Bot(int numeroBots)
     {
         super("Bot",202565001);
-        if(numeroBots==2){
+        if(numeroBots==2)
+        {
             nome = "Bot Nº2";
             id = 202565002;
         }
@@ -36,13 +37,14 @@ public class Bot extends Jogador {
                 {
                     if("ATAQUE".equals(jogada.tipo) && ataqueJogado<2)
                     {
-                          if(jogada.custo <= jogador.getEnergia()){
-                           jogador.jogadas.add(jogada);
-                           jogador.mao.remove(jogada);
-                           ataqueJogado+=1;
-                          jogador.alteraEnergia(-jogada.custo);
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
-                           break;
+                        if(jogada.custo <= jogador.getEnergia())
+                        {
+                            jogador.jogadas.add(jogada);
+                            jogador.mao.remove(jogada);
+                            ataqueJogado+=1;
+                            jogador.alteraEnergia(-jogada.custo);
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                            break;
                         }
                         podeJogar = false;
                     }
@@ -52,12 +54,12 @@ public class Bot extends Jogador {
                     if("DEFESA".equals(jogada.tipo) && defesaJogado < 1 )
                     {
                        if(jogada.custo <= jogador.getEnergia()){
-                           jogador.jogadas.add(jogada);
-                           jogador.mao.remove(jogada);
-                           defesaJogado+=1;
-                          jogador.alteraEnergia(-jogada.custo);
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
-                           break;
+                            jogador.jogadas.add(jogada);
+                            jogador.mao.remove(jogada);
+                            defesaJogado+=1;
+                            jogador.alteraEnergia(-jogada.custo);
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                            break;
                         }
                         podeJogar = false;
                     }
@@ -67,11 +69,11 @@ public class Bot extends Jogador {
                     if("SUPORTE".equals(jogada.tipo))
                     {
                         if(jogada.custo <= jogador.getEnergia()){
-                           jogador.jogadas.add(jogada);
-                           jogador.mao.remove(jogada);
-                           jogador.alteraEnergia(-jogada.custo);
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
-                           break;
+                            jogador.jogadas.add(jogada);
+                            jogador.mao.remove(jogada);
+                            jogador.alteraEnergia(-jogada.custo);
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                            break;
                         }
                         podeJogar = false;
                     }
@@ -84,13 +86,13 @@ public class Bot extends Jogador {
                 {
                     if("ATAQUE".equals(jogada.tipo) && ataqueJogado < 2)
                     {
-                          if(jogada.custo <= jogador.getEnergia()){
-                           jogador.jogadas.add(jogada);
-                           jogador.mao.remove(jogada);
-                           ataqueJogado+=1;
-                           jogador.alteraEnergia(-jogada.custo);
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
-                           break;
+                        if(jogada.custo <= jogador.getEnergia()){
+                            jogador.jogadas.add(jogada);
+                            jogador.mao.remove(jogada);
+                            ataqueJogado+=1;
+                            jogador.alteraEnergia(-jogada.custo);
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                            break;
                         }
                         podeJogar = false;
                     }
@@ -99,13 +101,13 @@ public class Bot extends Jogador {
                 {
                     if("DEFESA".equals(jogada.tipo) && defesaJogado < 2)
                     {
-                         if(jogada.custo <= jogador.getEnergia()){
-                           jogador.jogadas.add(jogada);
-                           jogador.mao.remove(jogada);
-                           defesaJogado+=1;
-                           jogador.alteraEnergia(-jogada.custo);
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
-                           break;
+                        if(jogada.custo <= jogador.getEnergia()){
+                            jogador.jogadas.add(jogada);
+                            jogador.mao.remove(jogada);
+                            defesaJogado+=1;
+                            jogador.alteraEnergia(-jogada.custo);
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                            break;
                         }
                         podeJogar = false;
                     }
@@ -115,11 +117,11 @@ public class Bot extends Jogador {
                     if("SUPORTE".equals(jogada.tipo))
                     {
                         if(jogada.custo <= jogador.getEnergia()){
-                           jogador.jogadas.add(jogada);
-                           jogador.mao.remove(jogada);
-                          jogador.alteraEnergia(-jogada.custo);
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
-                           break;
+                            jogador.jogadas.add(jogada);
+                            jogador.mao.remove(jogada);
+                            jogador.alteraEnergia(-jogada.custo);
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                            break;
                         }
                         podeJogar = false;
                     }
@@ -131,13 +133,13 @@ public class Bot extends Jogador {
                 {
                     if("DEFESA".equals(jogada.tipo) && defesaJogado<1)
                     {
-                          if(jogada.custo <= jogador.getEnergia()){
-                           jogador.jogadas.add(jogada);
-                           jogador.mao.remove(jogada);
-                           defesaJogado+=1;
-                           jogador.alteraEnergia(-jogada.custo);
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
-                           break;
+                        if(jogada.custo <= jogador.getEnergia()){
+                            jogador.jogadas.add(jogada);
+                            jogador.mao.remove(jogada);
+                            defesaJogado+=1;
+                            jogador.alteraEnergia(-jogada.custo);
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                            break;
                         }
                         podeJogar = false;
                     }
@@ -147,12 +149,12 @@ public class Bot extends Jogador {
                     if("ATAQUE".equals(jogada.tipo) && ataqueJogado<1)
                     {
                         if(jogada.custo <= jogador.getEnergia()){
-                           jogador.jogadas.add(jogada);
-                           jogador.mao.remove(jogada);
-                           ataqueJogado+=1;
-                          jogador.alteraEnergia(-jogada.custo);
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
-                           break;
+                            jogador.jogadas.add(jogada);
+                            jogador.mao.remove(jogada);
+                            ataqueJogado+=1;
+                            jogador.alteraEnergia(-jogada.custo);
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                            break;
                         }
                         podeJogar = false;
                     }
@@ -162,11 +164,11 @@ public class Bot extends Jogador {
                     if("SUPORTE".equals(jogada.tipo))
                     {
                        if(jogada.custo <= jogador.getEnergia()){
-                           jogador.jogadas.add(jogada);
-                           jogador.mao.remove(jogada);
-                           jogador.alteraEnergia(-jogada.custo);
-                           LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
-                           break;
+                            jogador.jogadas.add(jogada);
+                            jogador.mao.remove(jogada);
+                            jogador.alteraEnergia(-jogada.custo);
+                            LeArquivo.escreveReplay("Jogador " + nome + " jogou a carta: " + jogada.exibeCarta());
+                            break;
                         }
                         podeJogar = false;
                     }
@@ -178,7 +180,7 @@ public class Bot extends Jogador {
                 jogador.alteraEnergia(1);
             }
         ataqueJogado = 0;
-        defesaJogado =0;
+        defesaJogado = 0;
         LeArquivo.escreveReplay("Jogador " + nome + " terminou seu turno!");
     }    
   
