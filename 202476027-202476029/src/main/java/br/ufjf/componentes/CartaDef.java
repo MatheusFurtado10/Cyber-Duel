@@ -13,6 +13,4 @@ public class CartaDef extends Carta {
     public CartaDef(String n, String t, float poder, int c, String desc) {
         super(n, t, poder, c, desc);
     }
-
-  
 }

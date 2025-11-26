@@ -65,6 +65,16 @@ public class LeArquivo {
 
          return deck;
 }
+    public static void comecaReplay(String conteudo)
+    {
+      try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter("replay.txt")))
+      {
+          String linha = conteudo;
+          buffWrite.write(linha + "\n");
+      }catch(IOException e){
+          System.out.println("Nao deu pra escrever");
+      }
+    }
     public static void escreveReplay(String conteudo)
     {
       try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter("replay.txt",true)))
