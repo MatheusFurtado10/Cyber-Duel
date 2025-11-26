@@ -184,7 +184,7 @@ public class Jogo {
                            Responda com: 
                            0 - para ver dois Bots se enfrentando.
                            1 - para enfrentar um Bot.
-                           2 - para enfrentar outro jogador""");
+                           2 - para enfrentar outro jogador.""");
          boolean indiceValido=false;
         while(!indiceValido)
         {

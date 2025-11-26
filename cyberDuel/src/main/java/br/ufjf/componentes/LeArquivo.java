@@ -24,15 +24,15 @@ public class LeArquivo {
         Path arquivo = Paths.get(path);
         List<String> infoCartas = Files.readAllLines(arquivo, StandardCharsets.UTF_8);
         List<Carta> deck = new ArrayList<>();
-        
-            for (int i = 1; i < infoCartas.size(); i++) 
-            {
+        for (int i = 1; i < infoCartas.size(); i++) 
+        {
             String linha = infoCartas.get(i);
             String[] divide = linha.split(",");
             Carta novaCarta = null;
-            switch (divide.length) {
+            switch (divide.length) 
+            {
                 case 6 -> {
-                        
+
                         String nome = divide[0];
                         String tipo = divide[1]; 
                         float poder = parseFloat(divide[2]);
@@ -58,13 +58,13 @@ public class LeArquivo {
                     continue;
                 }
             }
-                if (novaCarta != null) {
-                    deck.add(novaCarta);
-                }
-          }
-
-         return deck;
-}
+            if (novaCarta != null) 
+            {
+                deck.add(novaCarta);
+            }
+        }
+        return deck;
+    }
     public static void comecaReplay(String conteudo)
     {
       try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter("replay.txt")))
