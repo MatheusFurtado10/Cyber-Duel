@@ -23,8 +23,8 @@ public class Jogador {
     int id;
     private int vida =100;
     private int energia = 10;
-    protected float ataque=0;
-    protected float defesa=0;
+    protected int ataque=0;
+    protected int defesa=0;
     protected int numAtk = 0;
     protected int numDef =0;
     protected int numSup =0;
@@ -65,7 +65,7 @@ public class Jogador {
         while(!entradaValida)
         {
            indice = Jogo.validaEntrada(leitura);
-           if (indice > 0 || indice < listaDisponivel.size()) {
+           if (indice > 0 && indice < listaDisponivel.size()) {
                entradaValida = true;
            }else
            {
@@ -79,7 +79,7 @@ public class Jogador {
         System.out.println("Tem certeza da sua escolha? Responda com 1 para confirmar.");
         int escolha = Jogo.validaEntrada(leitura);
         if (1==escolha){
-             return 1;
+             return indice;
         } 
         System.out.println("Seleção Cancelada");
         return -1; 
@@ -93,7 +93,11 @@ public class Jogador {
         }else{
             this.defineManual();
         }
-        LeArquivo.escreveReplay("Jogador " + nome + " escolheu suas cartas!");
+        maoReserva.addAll(mao);
+
+        LeArquivo.escreveReplay("Jogador " + nome + " escolheu suas cartas: ");
+        mao.forEach(carta -> LeArquivo.escreveReplay(mao.indexOf(carta)+1 + " - " + carta.exibeCartaSimples()));
+        LeArquivo.escreveReplay("");
     }
     public void defineManual() throws IOException
     {
@@ -170,8 +174,7 @@ public class Jogador {
             cartas.remove(indiceEscolhido);
             numSup++;
          }
-                 maoReserva.addAll(mao);
-
+        
     }
     public void reiniciaMao()
     {
@@ -180,7 +183,6 @@ public class Jogador {
             LeArquivo.escreveReplay("Jogador " + nome + " teve sua mão reiniciada!");
             mao.addAll(maoReserva);
         }
-       
     }
 
     public void realizarAcao(Jogador jogador, Scanner resposta) {
@@ -213,16 +215,19 @@ public class Jogador {
                   jogador.jogaCarta(jogador);
                   respondeu = true;
                   LeArquivo.escreveReplay("Jogador " + nome + " encerrou seu turno de cartas!");
+                  break;
                 } 
 
               case 2 -> {
                   respondeu=true;
                   LeArquivo.escreveReplay("Jogador " + nome + " passou a vez");
+                  break;
                 }
               case 3 -> {
                   respondeu=true;
                   jogador.rendeu =true;
                   LeArquivo.escreveReplay("Jogador " + nome + " rendeu o sistema!");
+                  break;
                 } 
 
               default -> System.out.println("Opção inválida. Tente novamente.");
@@ -232,24 +237,18 @@ public class Jogador {
 
     public void jogaCarta(Jogador jogador) {
        boolean podeJogar = true;
+       Scanner cartaSelecionada = new Scanner(System.in);
         while(podeJogar){
             jogador.reiniciaMao();
-            Scanner cartaSelecionada = new Scanner(System.in);
-  
             if(jogador.jogadas.isEmpty())
             {
-                   jogador.reiniciaMao();
+                    jogador.reiniciaMao();
                     System.out.println("------------------------------");
                     System.out.println("0 - Voltar para o menu anterior.");
-                     for(Carta carta : jogador.mao)
-                    {
-                        System.out.println(jogador.mao.indexOf(carta)+1 + " - " + carta.exibeCartaSimples());
-                        
-                    }
-                     
+                    mao.forEach(carta -> System.out.println(jogador.mao.indexOf(carta)+1 + " - " + carta.exibeCartaSimples()));
                     System.out.println("Escolha a carta pelo número: ");
-                     boolean indiceValido=false;
-                      int resposta =0;
+                    boolean indiceValido=false;
+                    int resposta =0;
                     while(!indiceValido)
                     {
                             resposta = Jogo.validaEntrada(cartaSelecionada)-1;
@@ -262,7 +261,7 @@ public class Jogador {
                     }
                     if(resposta == -1){
                         jogador.realizarAcao(jogador, cartaSelecionada);
-                        podeJogar=false;
+                       podeJogar = false;
                     }
                     else if(jogador.mao.get(resposta).custo <= jogador.energia){
                         jogador.jogadas.add(jogador.mao.get(resposta));
@@ -302,8 +301,9 @@ public class Jogador {
                                     System.out.println("Insira um número dentre as cartas");
                                 }
                             }
-                         if(resposta == -1){
+                        if(resposta == -1){
                         jogador.jogaCarta(jogador);
+                        podeJogar = false;
                         }else if(jogador.mao.get(resposta).custo <= jogador.getEnergia()){
                             jogador.jogadas.add(jogador.mao.get(resposta));
                             jogador.alteraEnergia(-jogador.mao.get(resposta).custo);
@@ -315,9 +315,7 @@ public class Jogador {
                             System.out.println("Energia insuficiente para jogar esta carta! Escolha outra");
                         }
                         break;
-                    case 2:
-                        podeJogar = false;
-                        break;
+                    case 2: podeJogar = false; break;
                     default: System.out.println("Escolha entre 1 ou 2!");
                 }
             }
@@ -337,14 +335,14 @@ public class Jogador {
         }
     }
     
-    public CartaAtk maiorAtaque()
+    public CartaAtk maiorAtaque(List<Carta> jogadas)
     {
         CartaAtk maior= new CartaAtk(" "," ",0,0," ");
         for(Carta cartaJogada : jogadas)
         {
             if(cartaJogada.poder > maior.poder && cartaJogada.tipo.equals("ATAQUE"))
             {
-                maior= (CartaAtk)cartaJogada;
+                maior = (CartaAtk)cartaJogada;
             }
         }
         return maior;
@@ -369,7 +367,6 @@ public class Jogador {
     }
     public void calculaSuportes(Jogador jogador1, Jogador jogador2)
     {
-        
         for(int i=0;i<jogador1.jogadas.size();i++)
             {
                 if(jogador1.jogadas.get(i).tipo.equals("SUPORTE"))
@@ -386,14 +383,15 @@ public class Jogador {
                                         }
                                         if(teveAtaqueJogado)
                                         {
-                                        jogador1.maiorAtaque().poder *= (1 + jogador1.jogadas.get(i).poder);
-                                        jogador1.ataque = 0;
-                                        jogador1.defesa = 0;
-                                        jogador1.calculaCartas(jogador1);
-                                        System.out.println("A carta " + jogador1.maiorAtaque().nome + " do jogador " + jogador1.nome + " teve seu ataque aumentado em " +
-                                        jogador1.jogadas.get(i).poder + " resultando em " + jogador1.maiorAtaque().poder);
-                                        LeArquivo.escreveReplay("A carta " + jogador1.maiorAtaque().nome + " do jogador " + jogador1.nome + " teve seu ataque aumentado em " +
-                                        jogador1.jogadas.get(i).poder + " resultando em " + jogador1.maiorAtaque().poder);
+                                            jogador1.maiorAtaque(jogador1.jogadas).poder *=(1 + jogador1.jogadas.get(i).poder);
+                                            jogador1.ataque = 0;
+                                            jogador1.defesa = 0;
+                                            jogador1.calculaCartas(jogador1);
+                                            System.out.println("A carta " + jogador1.maiorAtaque(jogador1.jogadas).nome + " do jogador " + jogador1.nome + " teve seu ataque aumentado em " +
+                                            jogador1.jogadas.get(i).poder + " resultando em " + (int) jogador1.maiorAtaque(jogador1.jogadas).poder);
+                                            LeArquivo.escreveReplay("A carta " + jogador1.maiorAtaque(jogador1.jogadas).nome + " do jogador " + jogador1.nome + " teve seu ataque aumentado em " +
+                                            jogador1.jogadas.get(i).poder + " resultando em " + (int) jogador1.maiorAtaque(jogador1.jogadas).poder);
+                                            jogador1.maiorAtaque(jogador1.jogadas).poder /= (1 + jogador1.jogadas.get(i).poder);
                                         }
                                         break;
                                     }
@@ -401,9 +399,9 @@ public class Jogador {
                                     {
                                         jogador2.ataque -= jogador2.ataque * jogador1.jogadas.get(i).poder ;
                                         System.out.println("O jogador " + jogador2.nome + " teve seu ataque reduzido em " +
-                                        jogador1.jogadas.get(i).poder + " resultando em " + jogador2.ataque);
+                                        jogador1.jogadas.get(i).poder + " resultando em " + (int) jogador2.ataque);
                                         LeArquivo.escreveReplay("O jogador " + jogador2.nome + " teve seu ataque reduzido em " +
-                                        jogador1.jogadas.get(i).poder + " resultando em " + jogador2.ataque);
+                                        jogador1.jogadas.get(i).poder + " resultando em " + (int) jogador2.ataque);
                                          break;
                                     }
                                     case "AUMENTA_VIDA" -> 
@@ -426,20 +424,43 @@ public class Jogador {
                             CartaSup mesa = (CartaSup) jogador2.jogadas.get(i);
                             switch(mesa.efeito)
                                 {
-                                    case "AUMENTA_ATAQUE":  jogador2.maiorAtaque().poder *= (1 + jogador2.jogadas.get(i).poder);
-                                                            jogador2.ataque = 0;
-                                                            jogador2.defesa = 0;
-                                                            jogador2.calculaCartas(jogador2);
-                                                            System.out.println("A carta " + jogador2.maiorAtaque().nome + " do jogador " + jogador2.nome + " teve seu ataque aumentado em " +
-                                                            jogador2.jogadas.get(i).poder + " resultando em " + jogador2.maiorAtaque().poder);
-                                                            LeArquivo.escreveReplay("A carta " + jogador2.maiorAtaque().nome + " do jogador " + jogador2.nome + " teve seu ataque aumentado em " +
-                                                            jogador2.jogadas.get(i).poder + " resultando em " + jogador2.maiorAtaque().poder);
+                                    case "AUMENTA_ATAQUE":  boolean teveAtaqueJogado = false;
+                                                            for(Carta cartaJogada : jogador2.jogadas)
+                                                            {
+                                                                if("ATAQUE".equals(cartaJogada.tipo)) teveAtaqueJogado = true;
+                                                            }
+                                                            if(teveAtaqueJogado)
+                                                            {
+                                                                jogador2.maiorAtaque(jogador2.jogadas).poder *= (1 + jogador2.jogadas.get(i).poder);
+                                                                jogador2.ataque = 0;
+                                                                jogador2.defesa = 0;
+                                                                jogador2.calculaCartas(jogador2);
+                                                                System.out.println("A carta " + jogador2.maiorAtaque(jogador2.jogadas).nome + " do jogador " + jogador2.nome + " teve seu ataque aumentado em " +
+                                                                jogador2.jogadas.get(i).poder + " resultando em " + (int) jogador2.maiorAtaque(jogador2.jogadas).poder);
+                                                                LeArquivo.escreveReplay("A carta " + jogador2.maiorAtaque(jogador2.jogadas).nome + " do jogador " + jogador2.nome + " teve seu ataque aumentado em " +
+                                                                jogador2.jogadas.get(i).poder + " resultando em " + (int) jogador2.maiorAtaque(jogador2.jogadas).poder);
+                                                                jogador2.maiorAtaque(jogador1.jogadas).poder /= (1 + jogador2.jogadas.get(i).poder);
+                                                                for(Carta cartaJogada : jogador1.jogadas)
+                                                                {
+                                                                    if("SUPORTE".equals(cartaJogada.tipo))
+                                                                    {
+                                                                        mesa = (CartaSup) cartaJogada;
+                                                                        if("DIMINUI_ATAQUE".equals(mesa.efeito))
+                                                                        {
+                                                                            jogador2.ataque -= jogador2.ataque * mesa.poder ;  
+                                                                            LeArquivo.escreveReplay("O jogador " + jogador2.nome + " teve seu ataque reduzido em " +
+                                                                            mesa.poder + " resultando em " + jogador2.ataque);
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                             break;
                                     case "DIMINUI_ATAQUE": jogador1.ataque -= jogador1.ataque * jogador2.jogadas.get(i).poder ;   
                                                             System.out.println("O jogador " + jogador1.nome + " teve seu ataque reduzido em " +
-                                                            jogador2.jogadas.get(i).poder + " resultando em " + jogador1.ataque);
+                                                            jogador2.jogadas.get(i).poder + " resultando em " + (int) jogador1.ataque);
                                                             LeArquivo.escreveReplay("O jogador " + jogador1.nome + " teve seu ataque reduzido em " +
-                                                            jogador2.jogadas.get(i).poder + " resultando em " + jogador1.ataque);
+                                                            jogador2.jogadas.get(i).poder + " resultando em " + (int) jogador1.ataque);
                                                             break;
                                     case "AUMENTA_VIDA": 
                                                         jogador2.vida +=  jogador2.jogadas.get(i).poder; 

@@ -21,11 +21,11 @@ Honeypot Avançado,SUPORTE,0.1,1,DIMINUI_ATAQUE,Engana o oponente e reduz seu at
 Blindagem Digital,SUPORTE,0.3,3,DIMINUI_ATAQUE,Absorve 30% do próximo dano recebido.
 Restauração de Backup,SUPORTE,30,3,AUMENTA_VIDA,Recupera 30 pontos de vida.
 Reinicialização Segura,SUPORTE,20,2,AUMENTA_VIDA,Recupera 20 pontos de vida do sistema.
-Recuperação de Sistema,SUPORTE,15,2,AUMENTA_VIDA,Restaura 15 pontos de vida após falha crítica.
+Recuperação de Sistema,SUPORTE,20,2,AUMENTA_VIDA,Restaura 15 pontos de vida após falha crítica.
 Recarga de Energia,SUPORTE,10,1,AUMENTA_VIDA,Recupera 10 pontos de vida instantaneamente.
 Reforço de Estrutura,SUPORTE,30,3,AUMENTA_VIDA,Reforça a integridade restaurando 25 pontos de vida.
 Manutenção Automática,SUPORTE,20,2,AUMENTA_VIDA,Executa rotinas de reparo e restaura 20 pontos de vida.
-Cópia de Segurança,SUPORTE,20,2,AUMENTA_VIDA,Recupera 15 pontos de vida de dados perdidos.
+Cópia de Segurança,SUPORTE,20,2,AUMENTA_VIDA,Recupera 20 pontos de vida de dados perdidos.
 Patch de Estabilidade,SUPORTE,10,1,AUMENTA_VIDA,Melhora a integridade recuperando 10 pontos de vida.
 Sistema de Recuperação Avançado,SUPORTE,30,3,AUMENTA_VIDA,Restaura 30 pontos de vida.
 Reforço de Hardware,SUPORTE,20,2,AUMENTA_VIDA,Recupera 20 pontos de vida fortalecendo o sistema.
@@ -36,7 +36,7 @@ Escudo Neural,SUPORTE,0.3,3,DIMINUI_ATAQUE,Reduz 30% do ataque baseado em IA.
 Diagnóstico Defensivo,SUPORTE,0.2,2,DIMINUI_ATAQUE,Prevê e neutraliza 20% do ataque inimigo.
 Análise Heurística,SUPORTE,0.2,2,AUMENTA_ATAQUE,Adapta o ataque e aumenta em 20% o dano.
 Compressão de Dados,SUPORTE,10,1,AUMENTA_VIDA,Recupera 10 pontos de vida ao liberar espaço.
-Replicação Segura,SUPORTE,25,3,AUMENTA_VIDA,Recupera 25 pontos de vida de cópias de sistema.
+Replicação Segura,SUPORTE,30,3,AUMENTA_VIDA,Recupera 30 pontos de vida de cópias de sistema.
 Firewall de Próxima Geração,SUPORTE,0.3,3,DIMINUI_ATAQUE,Bloqueia 30% do dano recebido.
 Rede Neural Ofensiva,SUPORTE,0.2,2,AUMENTA_ATAQUE,Aprende e amplifica ataques em 20%.
 Restauração Completa,SUPORTE,30,3,AUMENTA_VIDA,Restaura completamente 30 pontos de vida.
@@ -45,4 +45,4 @@ Otimizador de Scripts,SUPORTE,0.1,1,AUMENTA_ATAQUE,Melhora ataques em 10%.
 Reset Estratégico,SUPORTE,20,2,AUMENTA_VIDA,Recupera 20 pontos de vida ao reiniciar processos.
 Proteção Ativa,SUPORTE,0.3,3,DIMINUI_ATAQUE,Reduz 30% do ataque inimigo no próximo turno.
 Ataque Inteligente,SUPORTE,0.2,2,AUMENTA_ATAQUE,Melhora o poder ofensivo em 20%.
-Backup de Emergência,SUPORTE,20,2,AUMENTA_VIDA,Restaura 15 pontos de vida após um ataque forte.
+Backup de Emergência,SUPORTE,20,2,AUMENTA_VIDA,Restaura 20 pontos de vida após um ataque forte.

@@ -15,9 +15,13 @@ import java.util.Scanner;
 public class Bot extends Jogador {
     int ataqueJogado = 0;
     int defesaJogado =0;
-    public Bot()
+    public Bot(int numeroBots)
     {
         super("Bot",202565001);
+        if(numeroBots==2){
+            nome = "Bot Nº2";
+            id = 202565002;
+        }
     }
     @Override
     public void realizarAcao(Jogador jogador, Scanner resposta)
@@ -60,7 +64,7 @@ public class Bot extends Jogador {
                 }
                 for(Carta jogada : jogador.mao)
                 {
-                    if("SUPORTE".equals(jogada.tipo) && ataqueJogado >= 2)
+                    if("SUPORTE".equals(jogada.tipo))
                     {
                         if(jogada.custo <= jogador.getEnergia()){
                            jogador.jogadas.add(jogada);
