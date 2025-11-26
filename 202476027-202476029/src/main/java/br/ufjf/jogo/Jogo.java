@@ -51,15 +51,15 @@ public class Jogo {
         System.out.println("\n" + jogador2.nome.toUpperCase() + "\nID:"+ jogador2.id + "\nVida: " + jogador2.getVida() + "\nEnergia: "+jogador2.getEnergia() + "\n---------------------");
          LeArquivo.escreveReplay("\n" + jogador2.nome.toUpperCase() + "\nID:"+ jogador2.id + "\nVida: " + jogador2.getVida() + "\nEnergia: "+jogador2.getEnergia() + "\n---------------------");
     }
-    void iniciarJogo(Jogador j1, Jogador j2) {
+    void iniciarJogo(Jogador jogador1, Jogador jogador2) {
        
         Random rand = new Random();
         boolean ehTurno = rand.nextBoolean(); // escolhe aleatoriamente quem começa
         boolean jogoAtivo = true;
         Scanner resposta = new Scanner(System.in);
         while (jogoAtivo) {
-            Jogador jogadorAtual = ehTurno ? j2 : j1;
-            Jogador oponente = ehTurno ? j1 : j2;
+            Jogador jogadorAtual = ehTurno ? jogador2 : jogador1;
+            Jogador oponente = ehTurno ? jogador1 : jogador2;
             // Exibição do estado do jogo 
             System.out.println("---------"+rodada+"º RODADA------------");
             LeArquivo.escreveReplay("---------"+rodada+"º RODADA------------");
@@ -89,9 +89,9 @@ public class Jogo {
             oponente.jogadas.clear();
             
             // Verificação de Fim de Jogo 
-            if (j1.getVida()<= 0 || j2.getVida() <= 0) {
+            if (jogadorAtual.getVida()<= 0 || oponente.getVida() <= 0) {
                 jogoAtivo = false;
-                finalizarJogo(j1.getVida() <= 0 ? j2 : j1, j1.getVida() <= 0 ? j1 : j2);
+                finalizarJogo(jogadorAtual.getVida() <= 0 ? oponente : jogadorAtual, jogadorAtual.getVida() <= 0 ? jogadorAtual : oponente);
             }
             
             // Alterna o turno
@@ -142,6 +142,14 @@ public class Jogo {
         {
             oponente.setVida(100);
         }
+        if(jogadorAtual.getEnergia() <10)
+            {
+                jogadorAtual.alteraEnergia(1);
+            }
+        if(oponente.getEnergia() <10)
+            {
+                oponente.alteraEnergia(1);
+            }  
         oponente.defesa =0 ;
         oponente.ataque = 0;
         jogadorAtual.ataque = 0;
@@ -216,7 +224,7 @@ public class Jogo {
             System.out.println("Agora insira seu id:");
             id = Jogo.validaEntrada(resposta);
             Jogador jogador2 = new Jogador(nome,id);
-            System.out.println("Deseja utilizar a seleção de carta aleatória?\n Responda 1 para 'sim' ou 0 para 'não'");
+            System.out.println("Deseja utilizar a seleção de carta aleatória?\nResponda 1 para 'sim' ou 0 para 'não'");
            indiceValido=false;
             while(!indiceValido)
             {

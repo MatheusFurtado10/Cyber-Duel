@@ -24,6 +24,6 @@ public class CartaSup extends Carta {
     @Override
     public String exibeCarta()
     {
-        return(this.nome + " Tipo: " + this.tipo + " Poder:" + this.poder + " Custo:" + this.custo + " Efeito: "+this.efeito + " Descrição:" + this.descricao);
+        return(this.nome + " Tipo: " + this.tipo + " Poder:" + this.poder + " Custo:" + this.custo + " Efeito: "+this.efeito + " Descrição: " + this.descricao);
     }
 }

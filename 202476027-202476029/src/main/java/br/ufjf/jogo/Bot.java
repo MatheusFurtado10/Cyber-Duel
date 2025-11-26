@@ -78,7 +78,7 @@ public class Bot extends Jogador {
             {
                 for(Carta jogada : jogador.mao)
                 {
-                    if("ATAQUE".equals(jogada.tipo) && ataqueJogado < 1)
+                    if("ATAQUE".equals(jogada.tipo) && ataqueJogado < 2)
                     {
                           if(jogada.custo <= jogador.getEnergia()){
                            jogador.jogadas.add(jogada);
